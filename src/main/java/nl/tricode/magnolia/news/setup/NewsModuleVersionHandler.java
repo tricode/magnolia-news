@@ -41,14 +41,14 @@ import java.util.List;
 public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
     private static final Logger log = LoggerFactory.getLogger(NewsModuleVersionHandler.class);
 
-	private final static String MODULE_NAME = "tricode-news";
-    private static final String MODULE_VERSION_102 = "1.0.2";
+	 private final static String MODULE_NAME = "magnolia-news-module";
+    //private static final String MODULE_VERSION_102 = "1.0.2";
 
     public NewsModuleVersionHandler() {
-        register(DeltaBuilder.checkPrecondition("1.0.1", MODULE_VERSION_102));
+        //register(DeltaBuilder.checkPrecondition("1.0.1", MODULE_VERSION_102));
 
-        final Delta for_102 = DeltaBuilder.update(MODULE_VERSION_102, "").addTask(new ContentAppMigrationTask("/modules/tricode-module-news"));
-        register(for_102);
+        //final Delta for_102 = DeltaBuilder.update(MODULE_VERSION_102, "").addTask(new ContentAppMigrationTask("/modules/tricode-module-news"));
+        //register(for_102);
     }
 
     @Override
