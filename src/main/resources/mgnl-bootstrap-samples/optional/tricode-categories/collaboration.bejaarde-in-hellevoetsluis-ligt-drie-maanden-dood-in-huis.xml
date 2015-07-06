@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="bejaarde-in-hellevoetsluis-ligt-drie-maanden-dood-in-huis" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>mgnl:news</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5e250ca4-adc1-424d-b115-3bd9ff56ddee</sv:value>
+  </sv:property>
+  <sv:property sv:name="categories" sv:type="String" sv:multiple="true">
+    <sv:value>7f042eb5-150a-4dc9-b1cc-c2b0b76d785a</sv:value>
+  </sv:property>
+  <sv:property sv:name="comments" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:createdBy" sv:type="String">
+    <sv:value>admin</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:created" sv:type="Date">
+    <sv:value>2014-07-02T15:31:15.895+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:createdBy" sv:type="String">
+    <sv:value>superuser</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+    <sv:value>2014-07-31T11:55:07.906+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+    <sv:value>superuser</sv:value>
+  </sv:property>
+  <sv:property sv:name="startDate" sv:type="Date">
+    <sv:value>2014-07-03T00:00:00.000+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="summary" sv:type="String">
+    <sv:value>Een 79-jarige man uit Hellevoetsluis heeft drie maanden dood in zijn woning gelegen.</sv:value>
+  </sv:property>
+  <sv:property sv:name="text" sv:type="String">
+    <sv:value>&lt;p&gt;Een 79-jarige man uit Hellevoetsluis heeft drie maanden dood in zijn woning gelegen.&lt;/p&gt;
+
+&lt;p&gt;De man had geen familie en kwam niet vaak buiten. Buren hadden de politie ingeschakeld omdat ze de man al lange tijd niet hadden gezien.&lt;/p&gt;
+
+&lt;p&gt;De bejaarde man is een natuurlijke dood gestorven, laat de politie woensdag weten.&lt;/p&gt;
+
+&lt;p&gt;Het gebeurt vaker dat overleden mensen lange tijd in hun woning liggen zonder dat ze worden gevonden. Zo werd in februari in Den Haag een bejaarde man aangetroffen, een jaar nadat hij in zijn woning was gestorven.&lt;/p&gt;
+
+&lt;p&gt;In november vonden agenten in Rotterdam-West een vrouw die al tien jaar overleden bleek. Buurtbewoners dachten al die tijd dat de vrouw bij haar dochter was gaan wonen.&lt;/p&gt;
+</sv:value>
+  </sv:property>
+  <sv:property sv:name="title" sv:type="String">
+    <sv:value>Bejaarde in Hellevoetsluis ligt drie maanden dood in huis</sv:value>
+  </sv:property>
+</sv:node>

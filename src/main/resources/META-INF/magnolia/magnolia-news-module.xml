@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module SYSTEM "module.dtd" >
+<module>
+  <name>magnolia-news-module</name>
+  <displayName>${project.name}</displayName>
+  <description>${project.description}</description>
+  <class>nl.tricode.magnolia.news.NewsModule</class>
+  <versionHandler>nl.tricode.magnolia.news.setup.NewsModuleVersionHandler</versionHandler>
+  <version>${project.version}</version>
+
+
+    <dependencies>
+          <dependency>
+              <name>core</name>
+              <version>5/*</version>
+          </dependency>
+          <dependency>
+              <name>ui-admincentral</name>
+              <version>5/*</version>
+          </dependency>
+          <dependency>
+              <name>scheduler</name>
+              <version>2.1/*</version>
+          </dependency>
+          <dependency>
+              <name>tricode-categories</name>
+              <version>1.0/*</version>
+              <optional>true</optional>
+          </dependency>
+          <dependency>
+              <name>tricode-tags</name>
+              <version>1.0/*</version>
+              <optional>true</optional>
+          </dependency>
+      </dependencies>
+
+      <repositories>
+          <repository>
+              <name>magnolia</name>
+              <workspaces>
+                  <workspace>collaboration</workspace>
+              </workspaces>
+              <nodeTypeFile>/mgnl-nodetypes/tricode-news-nodetypes.xml</nodeTypeFile>
+          </repository>
+      </repositories>
+</module>

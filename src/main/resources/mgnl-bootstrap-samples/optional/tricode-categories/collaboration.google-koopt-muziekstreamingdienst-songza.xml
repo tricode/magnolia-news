@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="google-koopt-muziekstreamingdienst-songza" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>mgnl:news</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>532b74bb-9e58-4a1d-b8fc-8f980bfc66f9</sv:value>
+  </sv:property>
+  <sv:property sv:name="categories" sv:type="String" sv:multiple="true">
+    <sv:value>1782eb5f-d68e-4610-b232-d4b647908988</sv:value>
+    <sv:value>372fc4cb-05f8-4630-a417-c1b59da167fb</sv:value>
+  </sv:property>
+  <sv:property sv:name="comments" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:createdBy" sv:type="String">
+    <sv:value>admin</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:created" sv:type="Date">
+    <sv:value>2014-07-02T12:31:06.837+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:createdBy" sv:type="String">
+    <sv:value>superuser</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+    <sv:value>2014-07-31T11:54:57.071+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+    <sv:value>superuser</sv:value>
+  </sv:property>
+  <sv:property sv:name="startDate" sv:type="Date">
+    <sv:value>2014-07-02T00:00:00.000+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="summary" sv:type="String">
+    <sv:value>Google heeft de muziekstreamingdienst Songza, die gebruikers playlists muziek aanbeveelt op basis van de tijd, het weer en de locatie van de gebruiker, overgenomen. Google wil de functionaliteit van de streamingdienst integreren met zijn eigen muziekstreamingdienst.</sv:value>
+  </sv:property>
+  <sv:property sv:name="text" sv:type="String">
+    <sv:value>&lt;p&gt;Google heeft de muziekstreamingdienst Songza, die gebruikers playlists muziek aanbeveelt op basis van de tijd, het weer en de locatie van de gebruiker, overgenomen. Google wil de functionaliteit van de streamingdienst integreren met zijn eigen muziekstreamingdienst.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style="line-height:1.6em"&gt;Google gaat naar eigen&amp;nbsp;&lt;/span&gt;&lt;a href="https://plus.google.com/+GooglePlay/posts/9FotaTDAw34" rel="external" style="line-height: 1.6em; color: rgb(2, 67, 104);" target="_blank" title="plus.google.com - Exciting news today &amp;amp;#8212; we&amp;amp;#8217;re thrilled to welcome +Songza&amp;nbsp;to Google. They&amp;amp;#8217;ve&amp;amp;#8230;"&gt;zeggen&lt;/a&gt;&lt;span style="line-height:1.6em"&gt;&amp;nbsp;&amp;#39;verkennen&amp;#39; hoe het de functionaliteit van Songza kan integreren in Google Play Music. Ook gaat het bedrijf kijken hoe het het werk van het Songza-team kan inzetten in YouTube en andere Google-producten, al worden die niet bij naam genoemd. In de tussentijd zal Songza de deuren van zijn eigen muziekstreamingdienst openhouden, al sluit Google niet expliciet uit dat Songza uiteindelijk zal ophouden te bestaan als losse&amp;nbsp;streamingdienst.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Hoeveel Google betaalt voor het bedrijf, is niet bekend. Eerder&amp;nbsp;&lt;a href="http://tweakers.net/nieuws/96523/gerucht-google-wil-streamingdienst-songza-kopen.html" rel="external" style="color: rgb(2, 67, 104);" target="_blank" title="Gerucht: Google wil streamingdienst Songza kopen"&gt;ging&lt;/a&gt;&amp;nbsp;het gerucht al dat Google vijftien miljoen dollar voor het bedrijf op tafel zou willen leggen, maar TechCrunch&amp;nbsp;&lt;a href="http://techcrunch.com/2014/07/01/google-buys-songza/" rel="external" style="color: rgb(2, 67, 104);" target="_blank" title="techcrunch.com - Google Buys Songza  |  TechCrunch"&gt;tekent&lt;/a&gt;&amp;nbsp;aan dat Songza ook door andere bedrijven zou zijn benaderd; dat zou de prijs flink hebben verhoogd.&amp;nbsp;&lt;a href="http://www.nytimes.com/2014/07/02/business/media/google-buys-songza-a-playlist-app-for-any-occasion.html?_r=0" rel="external" style="color: rgb(2, 67, 104);" target="_blank"&gt;Volgens&lt;/a&gt;&amp;nbsp;The New York Times heeft Google uiteindelijk dan ook 39 miljoen dollar, oftewel bijna 29 miljoen euro, voor het bedrijf betaald.&lt;/p&gt;
+
+&lt;p&gt;Songza, dat 5.5 miljoen actieve gebruikers heeft, bestaat sinds 2007 en laat gebruikers luisteren naar playlists met muziek die zijn samengesteld door onder meer muziekjournalisten en dj&amp;#39;s. Daarbij raadt het gebruikers playlists aan op basis van zijn omstandigheden, zoals de lokale tijd, de locatie van de gebruiker en het weer op die locatie. Waarschijnlijk is Google vooral ge&amp;iuml;nteresseerd in die laatstgenoemde functionaliteit.&lt;/p&gt;
+</sv:value>
+  </sv:property>
+  <sv:property sv:name="title" sv:type="String">
+    <sv:value>Google koopt muziekstreamingdienst Songza</sv:value>
+  </sv:property>
+</sv:node>

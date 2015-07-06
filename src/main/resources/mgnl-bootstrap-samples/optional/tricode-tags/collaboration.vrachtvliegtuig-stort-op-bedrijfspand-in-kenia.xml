@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="vrachtvliegtuig-stort-op-bedrijfspand-in-kenia" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>mgnl:news</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>8005d2ce-fd66-4351-8e3f-82d5636f20ff</sv:value>
+  </sv:property>
+  <sv:property sv:name="comments" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="expiryDate" sv:type="Date">
+    <sv:value>2014-07-31T00:00:00.000+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:createdBy" sv:type="String">
+    <sv:value>admin</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:created" sv:type="Date">
+    <sv:value>2014-07-02T12:29:49.605+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:createdBy" sv:type="String">
+    <sv:value>superuser</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+    <sv:value>2014-07-31T11:55:01.548+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+    <sv:value>superuser</sv:value>
+  </sv:property>
+  <sv:property sv:name="startDate" sv:type="Date">
+    <sv:value>2014-07-02T00:00:00.000+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="summary" sv:type="String">
+    <sv:value>Een Fokker-vrachtvliegtuig is woensdagochtend vlak na het opstijgen neergestort op een bedrijfsgebouw bij Nairobi, in Kenia. </sv:value>
+  </sv:property>
+  <sv:property sv:name="tags" sv:type="String" sv:multiple="true">
+    <sv:value>26360221-3b18-47cb-89ea-995133a9fd4e</sv:value>
+    <sv:value>3defa55b-4b07-4378-a7f4-320d744f88ab</sv:value>
+  </sv:property>
+  <sv:property sv:name="text" sv:type="String">
+    <sv:value>&lt;p&gt;Een Fokker-vrachtvliegtuig is woensdagochtend vlak na het opstijgen neergestort op een bedrijfsgebouw bij Nairobi, in Kenia.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;De vier inzittenden van het vliegtuig van de regionale maatschappij Skyward International zijn omgekomen.&lt;/p&gt;
+
+&lt;p&gt;Dat meldt CNN.&amp;nbsp;Op de grond zijn zeker twee mensen gewond geraakt. In de puinhopen wordt gezocht naar nog meer mogelijke slachtoffers.&lt;/p&gt;
+
+&lt;p&gt;De Fokker 50, een vliegtuig van Nederlandse makelij,&amp;nbsp;is gebouwd van de jaren 80 tot in de jaren 90. Van de ruim tweehonderd&amp;nbsp;gebouwde toestellen zijn er wereldwijd nog veel in gebruik.&lt;/p&gt;
+</sv:value>
+  </sv:property>
+  <sv:property sv:name="title" sv:type="String">
+    <sv:value>Vrachtvliegtuig stort op bedrijfspand in Kenia</sv:value>
+  </sv:property>
+</sv:node>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="amerikaan-redt-man-uit-brandende-auto-door-deur-te-verbuigen" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>mgnl:news</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>3f913fa2-e07d-4848-8168-4ef3387c852b</sv:value>
+  </sv:property>
+  <sv:property sv:name="categories" sv:type="String" sv:multiple="true">
+    <sv:value>1782eb5f-d68e-4610-b232-d4b647908988</sv:value>
+  </sv:property>
+  <sv:property sv:name="comments" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:createdBy" sv:type="String">
+    <sv:value>admin</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:created" sv:type="Date">
+    <sv:value>2014-07-02T15:33:03.922+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:createdBy" sv:type="String">
+    <sv:value>superuser</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+    <sv:value>2014-07-31T11:55:10.635+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+    <sv:value>superuser</sv:value>
+  </sv:property>
+  <sv:property sv:name="startDate" sv:type="Date">
+    <sv:value>2014-07-04T00:00:00.000+02:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="summary" sv:type="String">
+    <sv:value>Een 52-jarige man heeft een man uit een brandende auto in het Amerikaanse Minnesota gered door een portier te verbuigen. De politie sprak van "bovennatuurlijke krachten". </sv:value>
+  </sv:property>
+  <sv:property sv:name="text" sv:type="String">
+    <sv:value>&lt;p&gt;Een 52-jarige man heeft een man uit een brandende auto in het Amerikaanse Minnesota gered door een portier te verbuigen. De politie sprak van &amp;quot;bovennatuurlijke krachten&amp;quot;.&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Bob Renning stopte zijn auto op een snelweg om iemand uit een brandende auto te helpen. Renning rende naar de auto, waar hij het portier&amp;nbsp;verboog door aan de bovenkant van de deur te trekken en die tegelijkertijd met zijn voet aan de onderkant tegen te houden.&amp;nbsp;Daardoor&amp;nbsp;kon Renning&amp;nbsp;de passagier uit de auto halen.&lt;/p&gt;
+
+&lt;p&gt;Politieagent Zachary Hill sprak vol lof over de &amp;quot;buitengewone heldendaad&amp;quot;&amp;nbsp;van Renning. &amp;quot;Hij heeft een afgesloten deur van een brandende auto voor de helft verbogen om een gevangen&amp;nbsp;persoon te bevrijden. Dat is een buitengewone daad,&amp;quot;&amp;nbsp;aldus Hill.&lt;/p&gt;
+
+&lt;p&gt;Renning werkt voor de US National Guard. De passagier, Michael Johannes, heeft een lichte rookvergiftiging en kleine snijwonden opgelopen door de reddingsactie. Verder maakt hij het goed.&lt;/p&gt;
+</sv:value>
+  </sv:property>
+  <sv:property sv:name="title" sv:type="String">
+    <sv:value>'Amerikaan redt man uit brandende auto door deur te verbuigen'</sv:value>
+  </sv:property>
+</sv:node>

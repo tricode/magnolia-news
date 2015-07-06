@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="verenigd-koninkrijk-betaalt-deel-schuld-eerste-wereldoorlog-af"
+  xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>mgnl:news</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>dc8457fa-1760-4000-9480-330ba888fc24</sv:value>
+  </sv:property>
+  <sv:property sv:name="comments" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="externalSource" sv:type="String">
+    <sv:value>http://www.nu.nl/economie/3917034/verenigd-koninkrijk-betaalt-deel-schuld-eerste-wereldoorlog-af.html</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:createdBy" sv:type="String">
+    <sv:value>admin</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:created" sv:type="Date">
+    <sv:value>2014-10-31T11:38:25.455+01:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:createdBy" sv:type="String">
+    <sv:value>superuser</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+    <sv:value>2014-10-31T11:38:25.455+01:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+    <sv:value>superuser</sv:value>
+  </sv:property>
+  <sv:property sv:name="startDate" sv:type="Date">
+    <sv:value>2014-10-31T00:00:00.000+01:00</sv:value>
+  </sv:property>
+  <sv:property sv:name="summary" sv:type="String">
+    <sv:value>De Britse regering gaat leningen uit de Eerste Wereldoorlog aflossen. Het is daarmee de eerste betaling van oorlogsleningen in 67 jaar.</sv:value>
+  </sv:property>
+  <sv:property sv:name="title" sv:type="String">
+    <sv:value>Verenigd Koninkrijk betaalt deel schuld Eerste Wereldoorlog af</sv:value>
+  </sv:property>
+</sv:node>
