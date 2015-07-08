@@ -30,7 +30,6 @@ import info.magnolia.templating.functions.TemplatingFunctions;
 import nl.tricode.magnolia.news.NewsNodeTypes;
 
 import nl.tricode.magnolia.news.util.NewsWorkspaceUtil;
-import nl.tricode.magnolia.util.WorkspaceUtil;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -212,7 +211,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 	 * @return List of category nodes
 	 */
 	public List<ContentMap> getNewsCategories(ContentMap news) {
-		return getItems(news.getJCRNode(), NewsNodeTypes.News.PROPERTY_CATEGORIES, WorkspaceUtil.CATEGORIES);
+		return getItems(news.getJCRNode(), NewsNodeTypes.News.PROPERTY_CATEGORIES, NewsWorkspaceUtil.CATEGORIES);
 	}
 
 	/**
