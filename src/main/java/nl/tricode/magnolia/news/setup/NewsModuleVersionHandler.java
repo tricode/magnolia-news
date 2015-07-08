@@ -67,6 +67,7 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
 
 	/**
 	 * Method of installing optional Tasks
+	 *
 	 * @param ctx
 	 * @return
 	 */
@@ -102,7 +103,6 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
 		final List<Task> tasks = new ArrayList<Task>();
 		tasks.addAll(super.getExtraInstallTasks(ctx));
 
-		//tasks.add(new BootstrapSingleResource("ui-admincentral add News app", "Bootstrap task for ui-admincentral", "/mgnl-bootstrap/magnolia-news-module/apps/config.modules.ui-admincentral.config.appLauncherLayout.groups.collaboration.apps.tricode-news.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
 		//Get Optional samples for bootstrapping.
 		tasks.add(new ModuleDependencyBootstrapTask("/mgnl-bootstrap-samples/optional", "tricode-tags"));
 		tasks.add(new ModuleDependencyBootstrapTask("/mgnl-bootstrap-samples/optional", "tricode-categories"));
