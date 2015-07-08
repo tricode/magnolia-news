@@ -58,12 +58,9 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
 			startupTasks.add(new RemoveNodeTask("Remove snapshot information", "", "config", "/modules/" + MODULE_NAME + "/apps"));
 			startupTasks.add(new RemoveNodeTask("Remove snapshot information", "", "config", "/modules/" + MODULE_NAME + "/commands"));
 			startupTasks.add(new RemoveNodeTask("Remove snapshot information", "", "config", "/modules/" + MODULE_NAME + "/dialogs"));
-			//startupTasks.add(new RemoveNodeTask("Remove snapshot information", "", "config", "/modules/ui-admincentral/config/appLauncherLayout/groups/tricode/apps/news"));
 			startupTasks.add(new ModuleBootstrapTask());
 		}
 		startupTasks.addAll(getOptionalTasks(ctx));
-
-		//startupTasks.add(new BootstrapSingleResource("ui-admincentral add News app", "Bootstrap task for ui-admincentral", UI_ADMINCENTRAL_BOOTSTRAP_FOLDER + "config.modules.ui-admincentral.config.appLauncherLayout.groups.collaboration.apps.tricode-news.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
 
 		return startupTasks;
 	}
