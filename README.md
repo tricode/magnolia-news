@@ -1,6 +1,10 @@
 # magnolia-news
 News module for [Magnolia cms](http://www.magnolia-cms.com).
 
+In this module we provide a Content app to create/edit/delete news items. 
+Create your own website components with nl.tricode.magnolia.news.templates.NewsRenderableDefinition
+to add to your Magnolia website.
+
 ## Prerequisites
 * [git](http://git-scm.com/)
 * [java 7](http://java.com)
