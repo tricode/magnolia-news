@@ -12,3 +12,12 @@ to add to your Magnolia website.
 
 ##License
 Copyright (c) 2015 Tricode and contributors. Released under a [GNUv3 license](https://github.com/tricode/magnolia-news/blob/master/license.txt).
+
+
+##Release notes 1.1.1.
+* Added userrole news-editor.
+* Added js config file for ckeditor.
+* Bugfix in configuration for add News action.
+* Bugfix optional tabs still in default bootstrap.
+* Changed versioning to three digit.
+ 
