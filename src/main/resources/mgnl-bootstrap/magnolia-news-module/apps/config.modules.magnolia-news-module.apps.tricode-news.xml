@@ -4961,7 +4961,7 @@
             <sv:value>169add4b-e9ea-452d-adde-efa8c8763135</sv:value>
           </sv:property>
           <sv:property sv:name="class" sv:type="String">
-            <sv:value>nl.tricode.magnolia.form.action.UniqueNameSaveFormActionDefinition</sv:value>
+            <sv:value>nl.tricode.magnolia.news.form.action.UniqueNameSaveFormActionDefinition</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:createdBy" sv:type="String">
             <sv:value>admin</sv:value>
