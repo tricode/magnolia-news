@@ -39,7 +39,7 @@ public class NewsNodeTypes {
         public static final String PROPERTY_SUMMARY = "summary";
         public static final String PROPERTY_TEXT = "text";
         public static final String PROPERTY_STARTDATE = "startDate";
-        public static final String PROPERTY_EXPIRYDATE = "expiryDate";
+        public static final String PROPERTY_UNPUBLISHDATE = "unpublishDate";
         public static final String PROPERTY_COMMENTS_ENABLED = "comments";
         public static final String PROPERTY_EXTERNAL_SOURCE = "externalSource";
         public static final String PROPERTY_CATEGORIES = "categories";

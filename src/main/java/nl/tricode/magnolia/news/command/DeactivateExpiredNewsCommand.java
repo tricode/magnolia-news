@@ -44,7 +44,7 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
 
     private static final String NEWS = "mgnl:news";
     private static final String DEACTIVATE_PROPERTY = "unpublishDate";
-	private static final String WORKSPACE = "collaboration";
+	 private static final String WORKSPACE = "collaboration";
 
     @Override
     public boolean execute(Context context) {

@@ -43,6 +43,12 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
 	private final static String MODULE_NAME = "magnolia-news-module";
 
 	public NewsModuleVersionHandler() {
+		final Delta for_1_1_2 = DeltaBuilder.update("1.1.2", "Reload Content App.")
+				  .addTask(new BootstrapSingleResource("Content app", "Removing expiry Date",
+							 "/mgnl-bootstrap/magnolia-news-module/apps/config.modules.magnolia-news-module.apps.tricode-news.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING));
+
+		register(for_1_1_2);
+
 		final Delta for_1_1_1 = DeltaBuilder.update("1.1.1", "Add a userrole news-editor")
 				  .addTask(new BootstrapSingleResource("Userrole config", "Installing a userrole config in the content app",
 							 "/mgnl-bootstrap/magnolia-news-module/apps/config.modules.magnolia-news-module.apps.tricode-news.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING))
