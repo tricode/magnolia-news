@@ -564,7 +564,7 @@
             <sv:value>info.magnolia.ui.framework.action.OpenEditDialogActionDefinition</sv:value>
           </sv:property>
           <sv:property sv:name="dialogName" sv:type="String">
-            <sv:value>tricode-news:folder</sv:value>
+            <sv:value>magnolia-news-module:folder</sv:value>
           </sv:property>
           <sv:property sv:name="icon" sv:type="String">
             <sv:value>icon-edit</sv:value>
