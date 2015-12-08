@@ -21,4 +21,10 @@ Copyright (c) 2015 Tricode and contributors. Released under a [GNUv3 license](ht
 * Bugfix in configuration for add News action.
 * Bugfix optional tabs still in default bootstrap.
 * Changed versioning to three digit.
+
+##Release notes 1.1.2.
+* Fixed opening dialog for rename folder.
+* Removed duplicate field 'expiry date'.
+* Fixed typo in app configuration.
+* Added correct query for nodes that needs to deactivated.
  

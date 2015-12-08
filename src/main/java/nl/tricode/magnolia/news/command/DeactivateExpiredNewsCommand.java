@@ -34,6 +34,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -51,7 +53,7 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
         try {
             // Get a list of all news nodes with expiryDate.
             List<Node> expiredNodes = NewsRenderableDefinition
-                    .getWrappedNodesFromQuery(NewsRenderableDefinition.buildQuery(NEWS, DEACTIVATE_PROPERTY), NEWS, WORKSPACE);
+                    .getWrappedNodesFromQuery(buildQuery(NEWS, DEACTIVATE_PROPERTY), NEWS, WORKSPACE);
             log.debug("newsNodes size [" + expiredNodes.size() + "].");
 
             //Unpublish expired nodes.
@@ -88,5 +90,28 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
 		} catch (ExchangeException e) {
 			log.error("ExchangeException", e);
 		}
+	}
+
+	/**
+	 * Build query to fetch expired and activated nodes.
+	 * @param nodeType
+	 * @param deactivateProperty
+	 * @return
+	 */
+	protected String buildQuery(String nodeType, String deactivateProperty) {
+		Calendar calendar = Calendar.getInstance();
+
+		// Current date minus one day
+		calendar.add(Calendar.DATE, -1);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+		String currentDate = sdf.format(calendar.getTime());
+
+		String query =  "SELECT * FROM [" + nodeType + "] " +
+				  "WHERE [" + nodeType + "]." + deactivateProperty + " IS NOT NULL " +
+				  "AND [" + nodeType + "].[mgnl:activationStatus]=true " +
+				  "AND [" + nodeType + "]." + deactivateProperty + " < CAST('" + currentDate + "' AS DATE)";
+		log.debug(query);
+		return query;
 	}
 }
