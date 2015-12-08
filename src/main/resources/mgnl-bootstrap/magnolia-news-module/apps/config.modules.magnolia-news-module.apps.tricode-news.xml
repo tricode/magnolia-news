@@ -336,7 +336,7 @@
               <sv:property sv:name="jcr:createdBy" sv:type="String">
                 <sv:value>admin</sv:value>
               </sv:property>
-              <sv:property sv:name="mgnl-blog" sv:type="String">
+              <sv:property sv:name="mgnl-news" sv:type="String">
                 <sv:value>mgnl:news</sv:value>
               </sv:property>
               <sv:property sv:name="mgnl:activationStatus" sv:type="Boolean">
