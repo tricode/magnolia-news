@@ -31,3 +31,4 @@ Copyright (c) 2015 Tricode and contributors. Released under a [GNUv3 license](ht
 * Update to Java 7.
 * Update to Magnolia 5.4.3.
 * Update Magnolia scheduler module 2.2.2.
+* Separation of Jcr queries.
