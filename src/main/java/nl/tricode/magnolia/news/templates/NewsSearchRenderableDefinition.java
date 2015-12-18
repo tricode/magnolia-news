@@ -31,6 +31,7 @@ import info.magnolia.rendering.model.RenderingModelImpl;
 import info.magnolia.rendering.template.RenderableDefinition;
 import info.magnolia.templating.functions.TemplatingFunctions;
 import nl.tricode.magnolia.news.NewsNodeTypes;
+import nl.tricode.magnolia.news.util.JcrUtils;
 import nl.tricode.magnolia.news.util.NewsWorkspaceUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -56,6 +57,7 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 	private static final String SEARCH_TERM = "s";
 	private static final String PAGENUMBER = "p";
 	private static final String SEARCH_PROXIMITY = "~0.6";
+	private static final String NEWS_NODETYPE = "mgnl:news";
 
 	protected Multimap<String, String> filter;
 
@@ -92,11 +94,11 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 		log.debug("Running constructor NewsSearchRenderableDefinition");
 	}
 
-
 	@Override
 	public String execute() {
-		String queryString = buildQuery(getSearchPath(), true);
-		log.debug(MessageFormat.format("BlogSearchRenderableDefinition Query executed: {0}", queryString));
+		String filters = getPredicate();
+		String queryString = JcrUtils.buildQuery(getSearchPath(), NEWS_NODETYPE, true, filters, true);
+		log.debug(MessageFormat.format("NewsSearchRenderableDefinition Query executed: {0}", queryString));
 
 		// Do not cache this response!
 		// More info: http://documentation.magnolia-cms.com/display/DOCS/Cache+module#Cachemodule-Cacheheadernegotiation
@@ -111,25 +113,6 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 			log.error(MessageFormat.format("{0} caught while parsing query for search term [{1}] : {2}", e.getClass().getName(), queryString, e.getMessage()), e);
 		}
 		return StringUtils.EMPTY;
-	}
-
-	protected String buildQuery(String path, Boolean useFilters) {
-		log.debug("buildQuery path[" + path + "], useFilters [" + useFilters + "].");
-
-		String filters = StringUtils.EMPTY;
-		if (useFilters) {
-			filters = getPredicate();
-		}
-		String query = "SELECT p.* FROM [nt:base] AS p " +
-				  "WHERE ISDESCENDANTNODE(p, '" + StringUtils.defaultIfEmpty(path, "/") + "') " +
-				  filters +
-				  "ORDER BY " + getOrderString();
-
-		return query;
-	}
-
-	protected String getOrderString() {
-		return "score() desc";
 	}
 
 	/**

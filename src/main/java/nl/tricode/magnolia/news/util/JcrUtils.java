@@ -92,21 +92,31 @@ public class JcrUtils {
 		return itemsListPaged;
 	}
 
-
 	public static String buildQuery(String path, String contentType) {
 		return buildQuery(path, contentType, false, null);
 	}
 
 	public static String buildQuery(String path, String contentType, boolean useFilters, String customFilters) {
-		String filters = org.apache.commons.lang.StringUtils.EMPTY;
+		return buildQuery(path, contentType, false, null, false);
+	}
+
+	public static String buildQuery(String path, String contentType, boolean useFilters, String customFilters, boolean orderBySearch) {
+		StringBuffer query = new StringBuffer();
+		query.append("SELECT p.* FROM [" + contentType + "] AS p ");
+		query.append("WHERE ISDESCENDANTNODE(p, '" + org.apache.commons.lang.StringUtils.defaultIfEmpty(path, "/") + "') ");
+
 		if (useFilters) {
-			filters = customFilters;
+			String filters = customFilters;
+			query.append(filters);
 		}
-		String query = "SELECT p.* FROM [" + contentType + "] AS p " +
-				         "WHERE ISDESCENDANTNODE(p, '" + org.apache.commons.lang.StringUtils.defaultIfEmpty(path, "/") + "') " +
-				          filters +
-				         "ORDER BY p.[mgnl:created] desc";
-		log.debug("BuildQuery [" + query + "].");
-		return query;
+
+		if (orderBySearch) {
+			query.append("score() desc ");
+		} else {
+			query.append("ORDER BY p.[mgnl:created] desc");
+		}
+
+		log.debug("BuildQuery [" + query.toString() + "].");
+		return query.toString();
 	}
 }
