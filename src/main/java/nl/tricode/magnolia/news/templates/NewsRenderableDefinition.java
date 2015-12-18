@@ -208,6 +208,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 	 *
 	 * @param news
 	 * @return List of category nodes
+	 * Deprecated for using Magnolia's own category module
 	 */
 	@Deprecated
 	public List<ContentMap> getNewsCategories(ContentMap news) {
@@ -239,6 +240,11 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 		return StringUtils.EMPTY;
 	}
 
+	/**
+	 * Deprecated for using Magnolia's own category module
+	 * @param filter
+	 * @return
+	 */
 	@Deprecated
 	protected String getCategoryPredicate(Map<String, String> filter) {
 		if (filter.containsKey(PARAM_CATEGORY)) {
