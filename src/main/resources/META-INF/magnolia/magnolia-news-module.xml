@@ -7,6 +7,14 @@
     <versionHandler>nl.tricode.magnolia.news.setup.NewsModuleVersionHandler</versionHandler>
     <version>${project.version}</version>
 
+    <components>
+        <id>main</id>
+        <component>
+            <type>info.magnolia.cms.exchange.Syndicator</type>
+            <implementation>info.magnolia.module.activation.SimpleSyndicator</implementation>
+        </component>
+    </components>
+
     <dependencies>
         <dependency>
             <name>core</name>
@@ -35,6 +43,7 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
+
 
     <repositories>
         <repository>

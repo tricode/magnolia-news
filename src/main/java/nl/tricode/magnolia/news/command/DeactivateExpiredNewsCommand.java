@@ -18,7 +18,6 @@
  */
 package nl.tricode.magnolia.news.command;
 
-import info.magnolia.cms.beans.config.ContentRepository;
 import info.magnolia.cms.exchange.ExchangeException;
 import info.magnolia.cms.exchange.Syndicator;
 import info.magnolia.cms.util.ContentUtil;
@@ -26,21 +25,18 @@ import info.magnolia.cms.util.Rule;
 import info.magnolia.commands.impl.BaseRepositoryCommand;
 import info.magnolia.context.Context;
 
-import info.magnolia.objectfactory.Components;
 import nl.tricode.magnolia.news.templates.NewsRenderableDefinition;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-/**
- * Created by mvdmark on 2-12-2014.
- */
 public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
     private static final Logger log = LoggerFactory.getLogger(DeactivateExpiredNewsCommand.class);
 
@@ -48,15 +44,22 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
     private static final String DEACTIVATE_PROPERTY = "unpublishDate";
 	 private static final String WORKSPACE = "collaboration";
 
+	 private Syndicator syndicator;
+
+	 @Inject
+	 public DeactivateExpiredNewsCommand(Syndicator syndicator) {
+		 this.syndicator = syndicator;
+	 }
+
     @Override
     public boolean execute(Context context) {
         try {
-            // Get a list of all news nodes with expiryDate.
+            /** Get a list of all news nodes with expiryDate. */
             List<Node> expiredNodes = NewsRenderableDefinition
                     .getWrappedNodesFromQuery(buildQuery(NEWS, DEACTIVATE_PROPERTY), NEWS, WORKSPACE);
             log.debug("newsNodes size [" + expiredNodes.size() + "].");
 
-            //Unpublish expired nodes.
+            /** Unpublish expired nodes. */
             unpublishExpiredNodes(context, expiredNodes);
         } catch (Exception e) {
             log.error("Exception: ", e);
@@ -67,22 +70,21 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
 
 	/**
 	 * This method unpublishes the news nodes that are expired.
-	 * @param context
+
 	 * @param expiredNodes
 	 * @throws javax.jcr.RepositoryException
 	 * @throws info.magnolia.cms.exchange.ExchangeException
 	 */
 	private void unpublishExpiredNodes(Context context, List<Node> expiredNodes) {
-		Syndicator syndicator = Components.getComponentProvider().newInstance(Syndicator.class);
-		syndicator.init(context.getUser(), this.getRepository(), ContentRepository.getDefaultWorkspace(this.getRepository()), new Rule());
-
+		/** Syndicator init method still needed because there is no other way to set user and workspace.
+		  * Magnolia does the same in there activation module. */
+		syndicator.init(context.getUser(), this.getRepository(), WORKSPACE, new Rule());
 		try {
-			//Looping the nodes to unpublish
+			/** Looping the nodes to unpublish. */
 			for (Node expiredNode : expiredNodes) {
-				//Saving the removal of the propery on the session because on the node is deprecated.
-				//TODO using new Node object and syndicator by inversion of control (Constructor injection)
+				/** Saving the removal of the propery on the session because on the node is deprecated. */
+				this.syndicator.deactivate(ContentUtil.asContent(expiredNode));
 
-				syndicator.deactivate(ContentUtil.asContent(expiredNode));
 				log.debug("Node [" + expiredNode.getName() + "  " + expiredNode.getPath() + "] unpublished.");
 			}
 		} catch (RepositoryException e) {
@@ -101,7 +103,7 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
 	protected String buildQuery(String nodeType, String deactivateProperty) {
 		Calendar calendar = Calendar.getInstance();
 
-		// Current date minus one day
+		/** Current date minus one day. */
 		calendar.add(Calendar.DATE, -1);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");

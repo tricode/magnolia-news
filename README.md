@@ -27,4 +27,4 @@ Copyright (c) 2015 Tricode and contributors. Released under a [GNUv3 license](ht
 * Removed duplicate field 'expiry date'.
 * Fixed typo in app configuration.
 * Added correct query for nodes that needs to deactivated.
- 
+* Add IoC for syndicator in scheduled job 'Deactivate published news' 
