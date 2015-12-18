@@ -25,8 +25,7 @@ import info.magnolia.cms.util.Rule;
 import info.magnolia.commands.impl.BaseRepositoryCommand;
 import info.magnolia.context.Context;
 
-import nl.tricode.magnolia.news.templates.NewsRenderableDefinition;
-
+import nl.tricode.magnolia.news.util.JcrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,8 +54,7 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
     public boolean execute(Context context) {
         try {
             /** Get a list of all news nodes with expiryDate. */
-            List<Node> expiredNodes = NewsRenderableDefinition
-                    .getWrappedNodesFromQuery(buildQuery(NEWS, DEACTIVATE_PROPERTY), NEWS, WORKSPACE);
+            List<Node> expiredNodes = JcrUtils.getWrappedNodesFromQuery(buildQuery(NEWS, DEACTIVATE_PROPERTY), NEWS, WORKSPACE);
             log.debug("newsNodes size [" + expiredNodes.size() + "].");
 
             /** Unpublish expired nodes. */
@@ -100,7 +98,7 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
 	 * @param deactivateProperty
 	 * @return
 	 */
-	protected String buildQuery(String nodeType, String deactivateProperty) {
+	private String buildQuery(String nodeType, String deactivateProperty) {
 		Calendar calendar = Calendar.getInstance();
 
 		/** Current date minus one day. */
