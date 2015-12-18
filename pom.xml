@@ -34,9 +34,9 @@
     </distributionManagement>
 
     <properties>
-        <magnoliaVersion>5.3.9</magnoliaVersion>
+        <magnoliaVersion>5.4.3</magnoliaVersion>
         <junitVersion>4.12</junitVersion>
-        <javaVersion>1.6</javaVersion>
+        <javaVersion>1.7</javaVersion>
     </properties>
 
     <dependencies>
@@ -66,7 +66,7 @@
         <dependency>
             <groupId>info.magnolia</groupId>
             <artifactId>magnolia-module-scheduler</artifactId>
-            <version>2.1.2</version>
+            <version>2.2.2</version>
         </dependency>
 
         <!-- TEST -->
