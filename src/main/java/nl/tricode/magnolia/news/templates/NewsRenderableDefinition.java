@@ -73,7 +73,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 		super(content, definition, parent);
 		this.templatingFunctions = templatingFunctions;
 
-		filter = new HashMap<String, String>();
+		filter = new HashMap<>();
 		final Iterator<Map.Entry<String, String>> it = MgnlContext.getWebContext().getParameters().entrySet().iterator();
 		while (it.hasNext()) {
 			final Map.Entry<String, String> pairs = it.next();

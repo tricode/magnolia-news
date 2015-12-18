@@ -69,7 +69,7 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 	private final TemplatingFunctions templatingFunctions;
 	private final WebContext webContext = MgnlContext.getWebContext();
 
-	private List<ContentMap> searchResults = new ArrayList<ContentMap>();
+	private List<ContentMap> searchResults = new ArrayList<>();
 
 	@Inject
 	public NewsSearchRenderableDefinition(Node content, RD definition, RenderingModel<?> parent, TemplatingFunctions templatingFunctions) {
@@ -152,7 +152,6 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 		setNumPages(calcNumPages);
 		setSearchResults(templatingFunctions.asContentMapList(nodeListPaged));
 	}
-
 
 	protected Set<String> allowedParameters() {
 		return Sets.newHashSet(SEARCH_TERM, "r", PAGENUMBER);
