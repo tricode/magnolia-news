@@ -27,4 +27,7 @@ Copyright (c) 2015 Tricode and contributors. Released under a [GNUv3 license](ht
 * Removed duplicate field 'expiry date'.
 * Fixed typo in app configuration.
 * Added correct query for nodes that needs to deactivated.
-* Add IoC for syndicator in scheduled job 'Deactivate published news' 
+* Add IoC for syndicator in scheduled job 'Deactivate published news'
+* Update to Java 7.
+* Update to Magnolia 5.4.3.
+* Update Magnolia scheduler module 2.2.2.
