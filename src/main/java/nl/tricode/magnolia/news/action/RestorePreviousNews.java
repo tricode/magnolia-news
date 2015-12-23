@@ -35,9 +35,6 @@ import javax.inject.Named;
 import javax.jcr.Node;
 import java.util.List;
 
-/**
- * Created by mvdmark on 25-11-2014.
- */
 public class RestorePreviousNews extends RestoreItemPreviousVersionAction {
     private final LocationController locationController;
 

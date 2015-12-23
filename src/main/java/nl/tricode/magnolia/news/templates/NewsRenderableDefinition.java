@@ -42,9 +42,6 @@ import javax.jcr.Value;
 import javax.jcr.query.Query;
 import java.util.*;
 
-/**
- * Created by mvdmark on 1-7-2014.
- */
 public class NewsRenderableDefinition<RD extends RenderableDefinition> extends RenderingModelImpl {
 	private static final Logger log = LoggerFactory.getLogger(NewsRenderableDefinition.class);
 
@@ -208,7 +205,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 	 *
 	 * @param news
 	 * @return List of category nodes
-	 * Deprecated for using Magnolia's own category module
+	 * @deprecated for using Magnolia's own category module
 	 */
 	@Deprecated
 	public List<ContentMap> getNewsCategories(ContentMap news) {

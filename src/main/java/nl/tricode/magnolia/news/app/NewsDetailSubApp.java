@@ -34,9 +34,6 @@ import info.magnolia.ui.vaadin.integration.contentconnector.ContentConnector;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-/**
- * Created by mvdmark on 30-6-2014.
- */
 public class NewsDetailSubApp extends DetailSubApp {
 
     @Inject

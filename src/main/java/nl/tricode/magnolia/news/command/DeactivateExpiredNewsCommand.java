@@ -37,7 +37,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
-    private static final Logger log = LoggerFactory.getLogger(DeactivateExpiredNewsCommand.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DeactivateExpiredNewsCommand.class);
 
     private static final String NEWS = "mgnl:news";
     private static final String DEACTIVATE_PROPERTY = "unpublishDate";
@@ -53,50 +53,52 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
     @Override
     public boolean execute(Context context) {
         try {
-            /** Get a list of all news nodes with expiryDate. */
-            List<Node> expiredNodes = JcrUtils.getWrappedNodesFromQuery(buildQuery(NEWS, DEACTIVATE_PROPERTY), NEWS, WORKSPACE);
-            log.debug("newsNodes size [" + expiredNodes.size() + "].");
+	        /** Get a list of all news nodes with expiryDate. */
+	        List<Node> expiredNodes = JcrUtils.getWrappedNodesFromQuery(buildQuery(NEWS, DEACTIVATE_PROPERTY), NEWS, WORKSPACE);
+	        LOG.debug("newsNodes size [" + expiredNodes.size() + "].");
 
-            /** Unpublish expired nodes. */
-            unpublishExpiredNodes(context, expiredNodes);
+	        /** Unpublish expired nodes. */
+	        unpublishExpiredNodes(context, expiredNodes);
+        }catch (RepositoryException e) {
+		       LOG.error("RepositoryException", e);
+	        return false;
+        } catch (ExchangeException e) {
+	        LOG.error("ExchangeException", e);
+	        return false;
         } catch (Exception e) {
-            log.error("Exception: ", e);
-            return false;
+           LOG.error("Exception: ", e);
+           return false;
         }
         return true;
     }
 
 	/**
-	 * This method unpublishes the news nodes that are expired.
+	 * This method unpublishes/deactivates the news nodes that are expired.
 
-	 * @param expiredNodes
+	 * @param expiredNodes List of Node which are expired.
 	 * @throws javax.jcr.RepositoryException
 	 * @throws info.magnolia.cms.exchange.ExchangeException
 	 */
-	private void unpublishExpiredNodes(Context context, List<Node> expiredNodes) {
+	private void unpublishExpiredNodes(Context context, List<Node> expiredNodes) throws RepositoryException, ExchangeException {
 		/** Syndicator init method still needed because there is no other way to set user and workspace.
 		  * Magnolia does the same in there activation module. */
 		syndicator.init(context.getUser(), this.getRepository(), WORKSPACE, new Rule());
-		try {
-			/** Looping the nodes to unpublish. */
-			for (Node expiredNode : expiredNodes) {
-				/** Saving the removal of the propery on the session because on the node is deprecated. */
-				this.syndicator.deactivate(ContentUtil.asContent(expiredNode));
 
-				log.debug("Node [" + expiredNode.getName() + "  " + expiredNode.getPath() + "] unpublished.");
-			}
-		} catch (RepositoryException e) {
-			log.error("RepositoryException", e);
-		} catch (ExchangeException e) {
-			log.error("ExchangeException", e);
+		/** Looping the nodes to unpublish. */
+		for (Node expiredNode : expiredNodes) {
+			/** Saving the removal of the propery on the session because on the node is deprecated.
+			 *  Still using de ContentUtil until there is a replacement. */
+			this.syndicator.deactivate(ContentUtil.asContent(expiredNode));
+
+			LOG.debug("Node [" + expiredNode.getName() + "  " + expiredNode.getPath() + "] unpublished.");
 		}
 	}
 
 	/**
 	 * Build query to fetch expired and activated nodes.
-	 * @param nodeType
-	 * @param deactivateProperty
-	 * @return
+	 * @param nodeType The nodetype to query.
+	 * @param deactivateProperty Name of the deactivation property.
+	 * @return Returns the query.
 	 */
 	private String buildQuery(String nodeType, String deactivateProperty) {
 		Calendar calendar = Calendar.getInstance();
@@ -111,7 +113,7 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
 				  "WHERE [" + nodeType + "]." + deactivateProperty + " IS NOT NULL " +
 				  "AND [" + nodeType + "].[mgnl:activationStatus]=true " +
 				  "AND [" + nodeType + "]." + deactivateProperty + " < CAST('" + currentDate + "' AS DATE)";
-		log.debug(query);
+		LOG.debug(query);
 		return query;
 	}
 }

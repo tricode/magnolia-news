@@ -23,9 +23,6 @@ import info.magnolia.cms.core.Path;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
-/**
- * Created by mvdmark on 3-7-2015.
- */
 public class NewsWorkspaceUtil {
 	public static final String COLLABORATION = "collaboration";
 	public static final String CATEGORIES = "categories";

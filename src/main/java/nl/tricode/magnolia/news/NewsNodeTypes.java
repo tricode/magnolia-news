@@ -20,9 +20,6 @@ package nl.tricode.magnolia.news;
 
 import info.magnolia.jcr.util.NodeTypes;
 
-/**
- * Created by mvdmark on 1-7-2014.
- */
 public class NewsNodeTypes {
     /**
      * Represents the nodeType mgnl:news.

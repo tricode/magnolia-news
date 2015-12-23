@@ -31,9 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-/**
- * Created by mvdmark on 18-12-2015.
- */
 public class JcrUtils {
 	private static final Logger log = LoggerFactory.getLogger(JcrUtils.class);
 	/**
@@ -59,7 +56,7 @@ public class JcrUtils {
 	 * @throws javax.jcr.RepositoryException
 	 */
 	public static List<Node> getWrappedNodesFromQuery(String query, int maxResultSize, int pageNumber, String nodeTypeName, String workspace) throws RepositoryException {
-		final List<Node> itemsListPaged = new ArrayList<Node>(0);
+		final List<Node> itemsListPaged = new ArrayList<>(0);
 		final NodeIterator items = QueryUtil.search(workspace, query, Query.JCR_SQL2, nodeTypeName);
 
 		// Paging result set
@@ -82,13 +79,12 @@ public class JcrUtils {
 	}
 
 	public static List<Node> getWrappedNodesFromQuery(String query, String nodeTypeName, String workspace) throws RepositoryException {
-		final List<Node> itemsListPaged = new ArrayList<Node>(0);
+		final List<Node> itemsListPaged = new ArrayList<>(0);
 		final NodeIterator items = QueryUtil.search(workspace, query, Query.JCR_SQL2, nodeTypeName);
 
 		while (items.hasNext()) {
 			itemsListPaged.add(new I18nNodeWrapper(items.nextNode()));
 		}
-
 		return itemsListPaged;
 	}
 
@@ -97,17 +93,16 @@ public class JcrUtils {
 	}
 
 	public static String buildQuery(String path, String contentType, boolean useFilters, String customFilters) {
-		return buildQuery(path, contentType, false, null, false);
+		return buildQuery(path, contentType, useFilters, customFilters, false);
 	}
 
 	public static String buildQuery(String path, String contentType, boolean useFilters, String customFilters, boolean orderBySearch) {
-		StringBuffer query = new StringBuffer();
-		query.append("SELECT p.* FROM [" + contentType + "] AS p ");
-		query.append("WHERE ISDESCENDANTNODE(p, '" + org.apache.commons.lang.StringUtils.defaultIfEmpty(path, "/") + "') ");
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT p.* FROM [").append(contentType).append("] AS p ");
+		query.append("WHERE ISDESCENDANTNODE(p, '").append(org.apache.commons.lang.StringUtils.defaultIfEmpty(path, "/")).append("') ");
 
 		if (useFilters) {
-			String filters = customFilters;
-			query.append(filters);
+			query.append(customFilters);
 		}
 
 		if (orderBySearch) {

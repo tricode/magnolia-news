@@ -20,9 +20,6 @@ package nl.tricode.magnolia.news.action;
 
 import info.magnolia.ui.contentapp.browser.action.RestoreItemPreviousVersionActionDefinition;
 
-/**
- * Created by mvdmark on 25-11-2014.
- */
 public class RestorePreviousNewsDefinition extends RestoreItemPreviousVersionActionDefinition {
     private boolean showPreview = true;
 

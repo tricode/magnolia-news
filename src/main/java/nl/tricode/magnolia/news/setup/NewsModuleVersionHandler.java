@@ -38,9 +38,8 @@ import java.util.List;
  * This class is used to handle installation and updates of your module.
  */
 public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
-	private static final Logger log = LoggerFactory.getLogger(NewsModuleVersionHandler.class);
-
-	private final static String MODULE_NAME = "magnolia-news-module";
+	private static final Logger LOG = LoggerFactory.getLogger(NewsModuleVersionHandler.class);
+	private static final String MODULE_NAME = "magnolia-news-module";
 
 	public NewsModuleVersionHandler() {
 		final Delta for_1_1_2 = DeltaBuilder.update("1.1.2", "Reload Content App.")
@@ -61,7 +60,7 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
 	protected List<Task> getStartupTasks(InstallContext ctx) {
 		ModuleDefinition module = ctx.getCurrentModuleDefinition();
 
-		List<Task> startupTasks = new ArrayList<Task>(0);
+		List<Task> startupTasks = new ArrayList<>(0);
 		startupTasks.addAll(super.getStartupTasks(ctx));
 
 		if ("SNAPSHOT".equals(module.getVersion().getClassifier())) {
@@ -79,20 +78,21 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
 	/**
 	 * Method of installing optional Tasks
 	 *
-	 * @param ctx
-	 * @return
+	 * @param ctx Install Context
+	 * @return a list of optional tasks.
 	 */
 	private List<Task> getOptionalTasks(InstallContext ctx) {
-		List<Task> tasks = new ArrayList<Task>(0);
+		List<Task> tasks = new ArrayList<>(0);
 
-		//TODO Check to make the bootstrap task more generic.
+
 		if (ctx.getHierarchyManager("config").isExist("/modules/tricode-tags")) {
-			log.info("Bootstrapping optional Tricode Tags for Tricode News");
+			LOG.info("Bootstrapping optional Tricode Tags for Tricode News");
 			tasks.add(new BootstrapSingleResource("Tricode news optional Tags", "Bootstrap the optional tab for Tags", "/mgnl-bootstrap/optional/tricode-tags/config.modules.magnolia-news-module.apps.tricode-news.subApps.detail.editor.form.tabs.tagstab.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
 		}
 
+		/** Remove in future if we are changing to the */
 		if (ctx.getHierarchyManager("config").isExist("/modules/tricode-categories")) {
-			log.info("Bootstrapping optional Tricode Categories for Tricode News");
+			LOG.info("Bootstrapping optional Tricode Categories for Tricode News");
 			tasks.add(new BootstrapSingleResource("Tricode news optional Categories", "Bootstrap the optional tab for Categories", "/mgnl-bootstrap/optional/tricode-categories/config.modules.magnolia-news-module.apps.tricode-news.subApps.detail.editor.form.tabs.categoriestab.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
 		}
 		return tasks;
@@ -100,7 +100,7 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
 
 	@Override
 	protected List<Task> getDefaultUpdateTasks(Version forVersion) {
-		final List<Task> tasks = new ArrayList<Task>();
+		final List<Task> tasks = new ArrayList<>();
 		tasks.addAll(super.getDefaultUpdateTasks(forVersion));
 
 		// Always update templates, resources no matter what version is updated!
@@ -111,7 +111,7 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
 
 	@Override
 	protected List<Task> getExtraInstallTasks(InstallContext ctx) {
-		final List<Task> tasks = new ArrayList<Task>();
+		final List<Task> tasks = new ArrayList<>();
 		tasks.addAll(super.getExtraInstallTasks(ctx));
 
 		//Get Optional samples for bootstrapping.
