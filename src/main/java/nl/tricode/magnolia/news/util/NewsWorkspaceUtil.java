@@ -30,8 +30,8 @@ public class NewsWorkspaceUtil {
 	/**
 	 * Filters characters like ?, !, etc and replaces spaces with -
 	 *
-	 * @param input
-	 * @return output
+	 * @param input Non filtered string.
+	 * @return output Filtered string on non word characters.
 	 */
 	public static String filterNonWordCharacters(String input) {
 		String output = input.trim();
