@@ -48,9 +48,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by mvdmark on 7-7-2014.
- */
 public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> extends RenderingModelImpl<RD> {
 	private static final Logger log = LoggerFactory.getLogger(NewsSearchRenderableDefinition.class);
 
@@ -121,12 +118,11 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 	 * @param statement     SQL2 statement
 	 * @param maxResultSize Max results returned
 	 * @param pageNumber    paging number
-	 * @throws javax.jcr.LoginException
 	 * @throws javax.jcr.RepositoryException
 	 */
-	protected void executePagedNodesQuery(String statement, int maxResultSize, int pageNumber, String workspace, String nodeType) throws LoginException, RepositoryException {
-		List<Node> nodeList = new ArrayList<Node>(0);
-		List<Node> nodeListPaged = new ArrayList<Node>(0);
+	protected void executePagedNodesQuery(String statement, int maxResultSize, int pageNumber, String workspace, String nodeType) throws RepositoryException {
+		List<Node> nodeList = new ArrayList<>(0);
+		List<Node> nodeListPaged = new ArrayList<>(0);
 		NodeIterator items = QueryUtil.search(workspace, statement, Query.JCR_SQL2, nodeType);
 		while (items.hasNext()) {
 			nodeList.add(new I18nNodeWrapper(items.nextNode()));
@@ -162,7 +158,7 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 		if (filter.containsKey(SEARCH_TERM)) {
 			String searchString = filter.get(SEARCH_TERM).iterator().next().replaceAll("'", "''");
 			searchString = searchString + SEARCH_PROXIMITY;
-			searchTermPredicate = MessageFormat.format("AND contains(p.*, ''{0}'') ", new Object[]{searchString});
+			searchTermPredicate = MessageFormat.format("AND contains(p.*, ''{0}'') ", searchString);
 		}
 		return searchTermPredicate;
 	}
