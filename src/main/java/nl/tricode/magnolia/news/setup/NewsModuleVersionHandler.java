@@ -90,7 +90,7 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
 			tasks.add(new BootstrapSingleResource("Tricode news optional Tags", "Bootstrap the optional tab for Tags", "/mgnl-bootstrap/optional/tricode-tags/config.modules.magnolia-news-module.apps.tricode-news.subApps.detail.editor.form.tabs.tagstab.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
 		}
 
-		/** Remove in future if we are changing to the */
+		/** Remove in future if we are changing to Magnolia category module*/
 		if (ctx.getHierarchyManager("config").isExist("/modules/tricode-categories")) {
 			LOG.info("Bootstrapping optional Tricode Categories for Tricode News");
 			tasks.add(new BootstrapSingleResource("Tricode news optional Categories", "Bootstrap the optional tab for Categories", "/mgnl-bootstrap/optional/tricode-categories/config.modules.magnolia-news-module.apps.tricode-news.subApps.detail.editor.form.tabs.categoriestab.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));

@@ -114,4 +114,5 @@ public class JcrUtils {
 		log.debug("BuildQuery [" + query.toString() + "].");
 		return query.toString();
 	}
+
 }

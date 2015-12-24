@@ -20,6 +20,7 @@ package nl.tricode.magnolia.news;
 
 import info.magnolia.jcr.util.NodeTypes;
 
+@SuppressWarnings("unused") //Node representation in java.
 public class NewsNodeTypes {
     /**
      * Represents the nodeType mgnl:news.

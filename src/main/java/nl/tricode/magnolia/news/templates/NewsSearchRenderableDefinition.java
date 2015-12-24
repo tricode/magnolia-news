@@ -48,6 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("unused") //Used in freemarker components.
 public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> extends RenderingModelImpl<RD> {
 	private static final Logger log = LoggerFactory.getLogger(NewsSearchRenderableDefinition.class);
 
@@ -235,6 +236,7 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 		this.searchResults = searchResults;
 	}
 
+	@SuppressWarnings("unused") //Used in freemarker components.
 	public int getCount() {
 		return count;
 	}
@@ -243,6 +245,7 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 		this.count = count;
 	}
 
+	@SuppressWarnings("unused") //Used in freemarker components.
 	public int getNumPages() {
 		return numPages;
 	}

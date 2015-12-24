@@ -112,6 +112,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 	 * @return List of news nodes sorted by date created in descending order
 	 * @throws RepositoryException
 	 */
+	@SuppressWarnings("unused") //Used in freemarker components.
 	public List<ContentMap> getLatestNews(String path, String maxResultSize) throws RepositoryException {
 		return getLatest(path, maxResultSize, NEWS_NODE_TYPE, getPageNumber(), NewsNodeTypes.News.NAME);
 	}
@@ -152,7 +153,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 	}
 
 	/**
-	 * Determine if older blog posts exists
+	 * Determine if older news posts exists
 	 *
 	 * @param path
 	 * @param maxResultSize
@@ -170,6 +171,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 	 * @param maxResultSize
 	 * @return page number with older news
 	 */
+	@SuppressWarnings("unused") //Used in freemarker components.
 	public int pageOlderPosts(String path, int maxResultSize) throws RepositoryException {
 		return (hasOlderNews(path, maxResultSize)) ? getPageNumber() + 1 : getPageNumber();
 	}
@@ -188,6 +190,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 	 *
 	 * @return page number with newer news
 	 */
+	@SuppressWarnings("unused") //Used in freemarker components.
 	public int pageNewerPosts() {
 		return (hasNewerPosts()) ? getPageNumber() - 1 : getPageNumber();
 	}
@@ -208,6 +211,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 	 * @deprecated for using Magnolia's own category module
 	 */
 	@Deprecated
+	@SuppressWarnings("unused") //Used in freemarker components.
 	public List<ContentMap> getNewsCategories(ContentMap news) {
 		return getItems(news.getJCRNode(), NewsNodeTypes.News.PROPERTY_CATEGORIES, NewsWorkspaceUtil.CATEGORIES);
 	}
@@ -218,6 +222,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 	 * @param news
 	 * @return List of tag nodes
 	 */
+	@SuppressWarnings("unused") //Used in freemarker components.
 	public List<ContentMap> getNewsTags(ContentMap news) {
 		return getItems(news.getJCRNode(), NewsNodeTypes.News.PROPERTY_TAGS, NewsWorkspaceUtil.COLLABORATION);
 	}
