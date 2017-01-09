@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News app for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -22,6 +22,11 @@ import info.magnolia.jcr.util.NodeTypes;
 
 @SuppressWarnings("unused") //Node representation in java.
 public class NewsNodeTypes {
+
+    private NewsNodeTypes() {
+        // Prevent instantiating this class.
+    }
+
     /**
      * Represents the nodeType mgnl:news.
      */
@@ -42,5 +47,9 @@ public class NewsNodeTypes {
         public static final String PROPERTY_EXTERNAL_SOURCE = "externalSource";
         public static final String PROPERTY_CATEGORIES = "categories";
         public static final String PROPERTY_TAGS = "tags";
+
+        private News() {
+            // Prevent instantiating this class
+        }
     }
 }

@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News app for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -26,11 +26,13 @@ import nl.tricode.magnolia.news.NewsNodeTypes;
 import javax.jcr.Item;
 
 public class NewsTitleColumnFormatter extends AbstractColumnFormatter<PropertyColumnDefinition> {
+
     public NewsTitleColumnFormatter(PropertyColumnDefinition definition) {
         super(definition);
     }
 
-    public Object generateCell(Table source, Object itemId, Object columnId) {
+    @Override
+    public Object generateCell(final Table source, final Object itemId, final Object columnId) {
         final Item jcrItem = getJcrItem(source, itemId);
 
         return GenericColumnFormatter.generateCellHelper(jcrItem, NewsNodeTypes.News.NAME, NewsNodeTypes.News.PROPERTY_TITLE);

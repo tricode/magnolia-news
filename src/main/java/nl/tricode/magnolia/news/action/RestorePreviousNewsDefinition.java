@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News app for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.

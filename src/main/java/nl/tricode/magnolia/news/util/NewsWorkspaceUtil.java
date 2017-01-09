@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News app for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -19,43 +19,49 @@
 package nl.tricode.magnolia.news.util;
 
 import info.magnolia.cms.core.Path;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
 public class NewsWorkspaceUtil {
-	public static final String COLLABORATION = "collaboration";
-	public static final String CATEGORIES = "categories";
 
-	/**
-	 * Filters characters like ?, !, etc and replaces spaces with -
-	 *
-	 * @param input Non filtered string.
-	 * @return output Filtered string on non word characters.
-	 */
-	public static String filterNonWordCharacters(String input) {
-		String output = input.trim();
-		return (output.replaceAll("[^\\w\\s\\-]", StringUtils.EMPTY).replaceAll("\\s+", StringUtils.HYPHEN));
-	}
+    public static final String COLLABORATION = "collaboration";
+    public static final String CATEGORIES = "categories";
 
-	/**
-	 * Define the Node Name. Node Name will be title in lower case and spaces replaced by '-'
-	 * Characters that will be removed are % ^ { } etc.
-	 */
-	public static String defineNodeName(final Node node, String propertyName) throws RepositoryException {
-		String title = node.getProperty(propertyName).getString();
-		return NewsWorkspaceUtil.filterNonWordCharacters(title).toLowerCase();
-	}
+    private NewsWorkspaceUtil() {
+        // Util class, prevent instantiating
+    }
 
-	/**
-	 * Create a new Node Unique NodeName.
-	 */
-	public static String generateUniqueNodeName(final Node node, String propertyName) throws RepositoryException {
-		String newNodeName = NewsWorkspaceUtil.defineNodeName(node, propertyName);
-		return Path.getUniqueLabel(node.getSession(), node.getParent().getPath(), newNodeName);
-	}
+    /**
+     * Create a new Node Unique NodeName.
+     */
+    public static String generateUniqueNodeName(final Node node, String propertyName) throws RepositoryException {
+        String newNodeName = NewsWorkspaceUtil.defineNodeName(node, propertyName);
+        return Path.getUniqueLabel(node.getSession(), node.getParent().getPath(), newNodeName);
+    }
 
-	public static boolean hasNameChanged(Node node, String nameProperty) throws RepositoryException {
-		return !node.getName().equals(NewsWorkspaceUtil.defineNodeName(node, nameProperty));
-	}
+    public static boolean hasNameChanged(Node node, String nameProperty) throws RepositoryException {
+        return !node.getName().equals(NewsWorkspaceUtil.defineNodeName(node, nameProperty));
+    }
+
+    /**
+     * Filters characters like ?, !, etc and replaces spaces with -
+     *
+     * @param input Non filtered string.
+     * @return output Filtered string on non word characters.
+     */
+    private static String filterNonWordCharacters(String input) {
+        String output = input.trim();
+        return (output.replaceAll("[^\\w\\s\\-]", StringUtils.EMPTY).replaceAll("\\s+", NewsStringUtils.HYPHEN));
+    }
+
+    /**
+     * Define the Node Name. Node Name will be title in lower case and spaces replaced by '-'
+     * Characters that will be removed are % ^ { } etc.
+     */
+    private static String defineNodeName(final Node node, String propertyName) throws RepositoryException {
+        String title = node.getProperty(propertyName).getString();
+        return NewsWorkspaceUtil.filterNonWordCharacters(title).toLowerCase();
+    }
 }

@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News app for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -31,88 +31,94 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class JcrUtils {
-	private static final Logger log = LoggerFactory.getLogger(JcrUtils.class);
-	/**
-	 * Query news items using JCR SQL2 syntax.
-	 *
-	 * @param query         Query string
-	 * @param maxResultSize Max results returned
-	 * @param pageNumber    paging number
-	 * @return List<Node> List of blog nodes
-	 * @throws javax.jcr.RepositoryException
-	 */
-	public static List<Node> getWrappedNodesFromQuery(String query, int maxResultSize, int pageNumber, String nodeTypeName) throws RepositoryException {
-		return getWrappedNodesFromQuery(query, maxResultSize, pageNumber, nodeTypeName, NewsWorkspaceUtil.COLLABORATION);
-	}
+public final class JcrUtils {
 
-	/**
-	 * Query items using JCR SQL2 syntax.
-	 *
-	 * @param query         Query string
-	 * @param maxResultSize Max results returned
-	 * @param pageNumber    paging number
-	 * @return List<Node> List of nodes
-	 * @throws javax.jcr.RepositoryException
-	 */
-	public static List<Node> getWrappedNodesFromQuery(String query, int maxResultSize, int pageNumber, String nodeTypeName, String workspace) throws RepositoryException {
-		final List<Node> itemsListPaged = new ArrayList<>(0);
-		final NodeIterator items = QueryUtil.search(workspace, query, Query.JCR_SQL2, nodeTypeName);
+    private static final Logger LOGGER = LoggerFactory.getLogger(JcrUtils.class);
 
-		// Paging result set
-		final int startRow = (maxResultSize * (pageNumber - 1));
-		if (startRow > 0) {
-			try {
-				items.skip(startRow);
-			} catch (NoSuchElementException e) {
-				log.error("No more blog items found beyond this item number: " + startRow);
-			}
-		}
+    private JcrUtils() {
+        // Util class, prevent instantiating
+    }
 
-		int count = 1;
-		while (items.hasNext() && count <= maxResultSize) {
-			itemsListPaged.add(new I18nNodeWrapper(items.nextNode()));
-			count++;
-		}
+    /**
+     * Query news items using JCR SQL2 syntax.
+     *
+     * @param query         Query string
+     * @param maxResultSize Max results returned
+     * @param pageNumber    paging number
+     * @return List<Node> List of blog nodes
+     * @throws javax.jcr.RepositoryException
+     */
+    public static List<Node> getWrappedNodesFromQuery(String query, int maxResultSize, int pageNumber, String nodeTypeName) throws RepositoryException {
+        return getWrappedNodesFromQuery(query, maxResultSize, pageNumber, nodeTypeName, NewsWorkspaceUtil.COLLABORATION);
+    }
 
-		return itemsListPaged;
-	}
+    /**
+     * Query items using JCR SQL2 syntax.
+     *
+     * @param query         Query string
+     * @param maxResultSize Max results returned
+     * @param pageNumber    paging number
+     * @return List<Node> List of nodes
+     * @throws javax.jcr.RepositoryException
+     */
+    public static List<Node> getWrappedNodesFromQuery(String query, int maxResultSize, int pageNumber, String nodeTypeName, String workspace) throws RepositoryException {
+        final List<Node> itemsListPaged = new ArrayList<>(0);
+        final NodeIterator items = QueryUtil.search(workspace, query, Query.JCR_SQL2, nodeTypeName);
 
-	public static List<Node> getWrappedNodesFromQuery(String query, String nodeTypeName, String workspace) throws RepositoryException {
-		final List<Node> itemsListPaged = new ArrayList<>(0);
-		final NodeIterator items = QueryUtil.search(workspace, query, Query.JCR_SQL2, nodeTypeName);
+        // Paging result set
+        final int startRow = (maxResultSize * (pageNumber - 1));
+        if (startRow > 0) {
+            try {
+                items.skip(startRow);
+            } catch (NoSuchElementException e) {
+                LOGGER.error("No more blog items found beyond this item number: {}", startRow);
+            }
+        }
 
-		while (items.hasNext()) {
-			itemsListPaged.add(new I18nNodeWrapper(items.nextNode()));
-		}
-		return itemsListPaged;
-	}
+        int count = 1;
+        while (items.hasNext() && count <= maxResultSize) {
+            itemsListPaged.add(new I18nNodeWrapper(items.nextNode()));
+            count++;
+        }
 
-	public static String buildQuery(String path, String contentType) {
-		return buildQuery(path, contentType, false, null);
-	}
+        return itemsListPaged;
+    }
 
-	public static String buildQuery(String path, String contentType, boolean useFilters, String customFilters) {
-		return buildQuery(path, contentType, useFilters, customFilters, false);
-	}
+    public static List<Node> getWrappedNodesFromQuery(String query, String nodeTypeName, String workspace) throws RepositoryException {
+        final List<Node> itemsListPaged = new ArrayList<>(0);
+        final NodeIterator items = QueryUtil.search(workspace, query, Query.JCR_SQL2, nodeTypeName);
 
-	public static String buildQuery(String path, String contentType, boolean useFilters, String customFilters, boolean orderBySearch) {
-		StringBuilder query = new StringBuilder();
-		query.append("SELECT p.* FROM [").append(contentType).append("] AS p ");
-		query.append("WHERE ISDESCENDANTNODE(p, '").append(org.apache.commons.lang.StringUtils.defaultIfEmpty(path, "/")).append("') ");
+        while (items.hasNext()) {
+            itemsListPaged.add(new I18nNodeWrapper(items.nextNode()));
+        }
+        return itemsListPaged;
+    }
 
-		if (useFilters) {
-			query.append(customFilters);
-		}
+    public static String buildQuery(String path, String contentType) {
+        return buildQuery(path, contentType, false, null);
+    }
 
-		if (orderBySearch) {
-			query.append("score() desc ");
-		} else {
-			query.append("ORDER BY p.[mgnl:created] desc");
-		}
+    public static String buildQuery(String path, String contentType, boolean useFilters, String customFilters) {
+        return buildQuery(path, contentType, useFilters, customFilters, false);
+    }
 
-		log.debug("BuildQuery [" + query.toString() + "].");
-		return query.toString();
-	}
+    public static String buildQuery(String path, String contentType, boolean useFilters, String customFilters, boolean orderBySearch) {
+        final StringBuilder query = new StringBuilder();
+        query.append("SELECT p.* FROM [").append(contentType).append("] AS p ");
+        query.append("WHERE ISDESCENDANTNODE(p, '").append(org.apache.commons.lang.StringUtils.defaultIfEmpty(path, "/")).append("') ");
+
+        if (useFilters) {
+            query.append(customFilters);
+        }
+
+        if (orderBySearch) {
+            query.append("score() desc ");
+        } else {
+            query.append("ORDER BY p.[mgnl:created] desc");
+        }
+
+        LOGGER.debug("BuildQuery [{}].", query.toString());
+        return query.toString();
+    }
 
 }

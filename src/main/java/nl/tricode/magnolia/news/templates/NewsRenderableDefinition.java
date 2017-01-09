@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News app for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -43,7 +43,8 @@ import javax.jcr.query.Query;
 import java.util.*;
 
 public class NewsRenderableDefinition<RD extends RenderableDefinition> extends RenderingModelImpl {
-	private static final Logger log = LoggerFactory.getLogger(NewsRenderableDefinition.class);
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(NewsRenderableDefinition.class);
 
 	private static final int DEFAULT_LATEST_COUNT = 5;
 	private static final String NEWS_NODE_TYPE = "mgnl:news";
@@ -76,7 +77,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 			final Map.Entry<String, String> pairs = it.next();
 			if (WHITELISTED_PARAMETERS.contains(pairs.getKey()) && StringUtils.isNotEmpty(pairs.getValue())) {
 				filter.put(pairs.getKey(), pairs.getValue());
-				log.debug("Added to filter: " + pairs.getKey());
+				LOGGER.debug("Added to filter: {}", pairs.getKey());
 			}
 			it.remove(); // avoids a ConcurrentModificationException
 		}
@@ -192,7 +193,11 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 	 */
 	@SuppressWarnings("unused") //Used in freemarker components.
 	public int pageNewerPosts() {
-		return (hasNewerPosts()) ? getPageNumber() - 1 : getPageNumber();
+        if (hasNewerPosts()) {
+            return getPageNumber() - 1;
+        } else {
+            return getPageNumber();
+        }
 	}
 
 	private int getPageNumber() {
@@ -236,7 +241,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 					return "AND p.tags like '%" + tagId + "%' ";
 				}
 			} else {
-				log.debug("Tag [{}] not found", filter.get(PARAM_TAG));
+				LOGGER.debug("Tag [{}] not found", filter.get(PARAM_TAG));
 			}
 		}
 		return StringUtils.EMPTY;
@@ -257,7 +262,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 					return "AND p.categories like '%" + categoryId + "%' ";
 				}
 			} else {
-				log.debug("Category [{}] not found", filter.get(PARAM_CATEGORY));
+				LOGGER.debug("Category [{}] not found", filter.get(PARAM_CATEGORY));
 			}
 		}
 		return StringUtils.EMPTY;
@@ -274,7 +279,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
 				}
 			}
 		} catch (RepositoryException e) {
-			log.error("Exception while getting items", e.getMessage());
+			LOGGER.error("Exception while getting items", e);
 		}
 		return items;
 	}

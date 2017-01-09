@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News app for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -29,34 +29,39 @@ import javax.jcr.Item;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
-public class GenericColumnFormatter {
-	private static final Logger log = LoggerFactory.getLogger(GenericColumnFormatter.class);
+final class GenericColumnFormatter {
 
-	public static Object generateCellHelper(Item jcrItem, String nodeTypeName, String propertyTitle) {
-		if (jcrItem != null && jcrItem.isNode()) {
-			Node node = (Node) jcrItem;
+    private static final Logger LOGGER = LoggerFactory.getLogger(GenericColumnFormatter.class);
 
-			try {
-				if (NodeUtil.isNodeType(node, NodeTypes.Folder.NAME)) {
-					return node.getName();
-				}
+    private GenericColumnFormatter() {
+        // Util class, prevent instantiating
+    }
 
-				if (NodeUtil.isNodeType(node, NodeTypes.Deleted.NAME)) {
-					return node.getName();
-				}
+    static Object generateCellHelper(final Item jcrItem, final String nodeTypeName, final String propertyTitle) {
+        if (jcrItem != null && jcrItem.isNode()) {
+            Node node = (Node) jcrItem;
 
-				if (NodeUtil.isNodeType(node, nodeTypeName)) {
-					Object result = PropertyUtil.getString(node, propertyTitle, StringUtils.EMPTY);
-					if (result != null) {
-						return result;
-					} else {
-						return PropertyUtil.getString(node, propertyTitle, StringUtils.EMPTY);
-					}
-				}
-			} catch (RepositoryException e) {
-				log.info("Unable to get " + propertyTitle + " of blog for column", e);
-			}
-		}
-		return StringUtils.EMPTY;
-	}
+            try {
+                if (NodeUtil.isNodeType(node, NodeTypes.Folder.NAME)) {
+                    return node.getName();
+                }
+
+                if (NodeUtil.isNodeType(node, NodeTypes.Deleted.NAME)) {
+                    return node.getName();
+                }
+
+                if (NodeUtil.isNodeType(node, nodeTypeName)) {
+                    Object result = PropertyUtil.getString(node, propertyTitle, StringUtils.EMPTY);
+                    if (result != null) {
+                        return result;
+                    } else {
+                        return PropertyUtil.getString(node, propertyTitle, StringUtils.EMPTY);
+                    }
+                }
+            } catch (RepositoryException e) {
+                LOGGER.info("Unable to get " + propertyTitle + " of blog for column", e);
+            }
+        }
+        return StringUtils.EMPTY;
+    }
 }

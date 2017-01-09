@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News app for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -36,11 +36,12 @@ import javax.jcr.Node;
 import java.util.List;
 
 public class RestorePreviousNews extends RestoreItemPreviousVersionAction {
+
     private final LocationController locationController;
 
     public RestorePreviousNews(RestoreItemPreviousVersionActionDefinition definition, JcrItemAdapter item,
-        CommandsManager commandsManager, @Named("admincentral") EventBus eventBus, UiContext uiContext,
-        SimpleTranslator i18n, LocationController locationController) {
+                               CommandsManager commandsManager, @Named("admincentral") EventBus eventBus, UiContext uiContext,
+                               SimpleTranslator i18n, LocationController locationController) {
 
         super(definition, item, commandsManager, eventBus, uiContext, i18n);
 
@@ -48,8 +49,8 @@ public class RestorePreviousNews extends RestoreItemPreviousVersionAction {
     }
 
     public RestorePreviousNews(RestoreItemPreviousVersionActionDefinition definition, List<JcrItemAdapter> items,
-        CommandsManager commandsManager, @Named("admincentral") EventBus eventBus, UiContext uiContext,
-        SimpleTranslator i18n, LocationController locationController) {
+                               CommandsManager commandsManager, @Named("admincentral") EventBus eventBus, UiContext uiContext,
+                               SimpleTranslator i18n, LocationController locationController) {
 
         super(definition, items, commandsManager, eventBus, uiContext, i18n);
 

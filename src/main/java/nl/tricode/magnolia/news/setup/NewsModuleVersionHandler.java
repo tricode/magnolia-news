@@ -1,4 +1,4 @@
-/**
+/*
  * Tricode News module
  * Is a News app for Magnolia CMS.
  * Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -20,13 +20,12 @@ package nl.tricode.magnolia.news.setup;
 
 import info.magnolia.module.DefaultModuleVersionHandler;
 import info.magnolia.module.InstallContext;
-import info.magnolia.module.delta.*;
-import info.magnolia.module.model.ModuleDefinition;
-import info.magnolia.module.model.Version;
-
+import info.magnolia.module.delta.BootstrapSingleResource;
+import info.magnolia.module.delta.DeltaBuilder;
+import info.magnolia.module.delta.ModuleBootstrapTask;
+import info.magnolia.module.delta.RemoveNodeTask;
+import info.magnolia.module.delta.Task;
 import nl.tricode.magnolia.news.setup.task.ModuleDependencyBootstrapTask;
-import nl.tricode.magnolia.news.setup.task.UpdateModuleBootstrapTask;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,86 +37,65 @@ import java.util.List;
  * This class is used to handle installation and updates of your module.
  */
 public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
-	private static final Logger LOG = LoggerFactory.getLogger(NewsModuleVersionHandler.class);
-	private static final String MODULE_NAME = "magnolia-news-module";
 
-	public NewsModuleVersionHandler() {
-		final Delta for_1_1_2 = DeltaBuilder.update("1.1.2", "Reload Content App.")
-				  .addTask(new BootstrapSingleResource("Content app", "Removing expiry Date",
-							 "/mgnl-bootstrap/magnolia-news-module/apps/config.modules.magnolia-news-module.apps.tricode-news.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING));
+    private static final Logger LOGGER = LoggerFactory.getLogger(NewsModuleVersionHandler.class);
+    private static final String MODULE_NAME = "magnolia-news-module";
 
-		register(for_1_1_2);
+    /**
+     * Constructor.
+     * <p/>
+     * Here you can register deltas for tasks that need to be run when UPDATING an EXISTING module.
+     */
+    public NewsModuleVersionHandler() {
+        register(DeltaBuilder.update("1.1.1", "Add a userrole news-editor")
+                .addTask(new BootstrapSingleResource("Userrole config", "Installing a userrole for the news module",
+                        "/mgnl-bootstrap/magnolia-news-module/userroles/userroles.news-editor.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING)));
 
-		final Delta for_1_1_1 = DeltaBuilder.update("1.1.1", "Add a userrole news-editor")
-				  .addTask(new BootstrapSingleResource("Userrole config", "Installing a userrole config in the content app",
-							 "/mgnl-bootstrap/magnolia-news-module/apps/config.modules.magnolia-news-module.apps.tricode-news.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING))
-				  .addTask(new BootstrapSingleResource("Userrole config", "Installing a userrole for the news module",
-							 "/mgnl-bootstrap/magnolia-news-module/userroles/userroles.news-editor.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REMOVE_EXISTING));
-		register(for_1_1_1);
-	}
+        register(DeltaBuilder.update("1.1.4", "Upgrading news module to Magnolia 5.5")
+                .addTask(new RemoveNodeTask("Remove old nodes", "/modules/" + MODULE_NAME + "/apps"))
+                .addTask(new RemoveNodeTask("Remove old nodes", "/modules/" + MODULE_NAME + "/dialogs"))
+        );
+    }
 
-	@Override
-	protected List<Task> getStartupTasks(InstallContext ctx) {
-		ModuleDefinition module = ctx.getCurrentModuleDefinition();
+    /**
+     * Override this method when defining tasks that need to be executed when INITIALLY INSTALLING the module.
+     *
+     * @param installContext Context of the install, can be used to display messages
+     * @return A list of tasks to execute on initial install
+     */
+    @Override
+    protected List<Task> getExtraInstallTasks(final InstallContext installContext) {
+        final List<Task> tasks = new ArrayList<>();
+        tasks.addAll(super.getExtraInstallTasks(installContext));
+        tasks.add(new ModuleDependencyBootstrapTask("/mgnl-bootstrap-samples/optional", "tricode-tags"));
+        tasks.add(new ModuleDependencyBootstrapTask("/mgnl-bootstrap-samples/optional", "tricode-categories"));
 
-		List<Task> startupTasks = new ArrayList<>(0);
-		startupTasks.addAll(super.getStartupTasks(ctx));
+        if (installContext.getHierarchyManager("config").isExist("/modules/tricode-tags")) {
+            LOGGER.info("Bootstrapping optional Tricode Tags for Tricode News");
+            tasks.add(new BootstrapSingleResource("Tricode news optional Tags", "Bootstrap the optional tab for Tags", "/mgnl-bootstrap/optional/tricode-tags/config.modules.magnolia-news-module.apps.tricode-news.subApps.detail.editor.form.tabs.tagstab.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
+        }
 
-		if ("SNAPSHOT".equals(module.getVersion().getClassifier())) {
-			// force updates for snapshots
-			startupTasks.add(new RemoveNodeTask("Remove snapshot information", "", "config", "/modules/" + MODULE_NAME + "/apps"));
-			startupTasks.add(new RemoveNodeTask("Remove snapshot information", "", "config", "/modules/" + MODULE_NAME + "/commands"));
-			startupTasks.add(new RemoveNodeTask("Remove snapshot information", "", "config", "/modules/" + MODULE_NAME + "/dialogs"));
-			startupTasks.add(new ModuleBootstrapTask());
-		}
-		startupTasks.addAll(getOptionalTasks(ctx));
+        // todo FUNCTIONAL: Remove in future if we are changing to Magnolia category module
+        if (installContext.getHierarchyManager("config").isExist("/modules/tricode-categories")) {
+            LOGGER.info("Bootstrapping optional Tricode Categories for Tricode News");
+            tasks.add(new BootstrapSingleResource("Tricode news optional Categories", "Bootstrap the optional tab for Categories", "/mgnl-bootstrap/optional/tricode-categories/config.modules.magnolia-news-module.apps.tricode-news.subApps.detail.editor.form.tabs.categoriestab.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
+        }
 
-		return startupTasks;
-	}
+        return tasks;
+    }
 
-	/**
-	 * Method of installing optional Tasks
-	 *
-	 * @param ctx Install Context
-	 * @return a list of optional tasks.
-	 */
-	private List<Task> getOptionalTasks(InstallContext ctx) {
-		List<Task> tasks = new ArrayList<>(0);
+    @Override
+    protected List<Task> getStartupTasks(InstallContext ctx) {
+        final List<Task> startupTasks = new ArrayList<>(0);
+        startupTasks.addAll(super.getStartupTasks(ctx));
 
+        if ("SNAPSHOT".equals(ctx.getCurrentModuleDefinition().getVersion().getClassifier())) {
+            // force updates for snapshots
+            startupTasks.add(new RemoveNodeTask("Remove snapshot information", "", "config", "/modules/" + MODULE_NAME + "/commands"));
+            startupTasks.add(new ModuleBootstrapTask());
+        }
 
-		if (ctx.getHierarchyManager("config").isExist("/modules/tricode-tags")) {
-			LOG.info("Bootstrapping optional Tricode Tags for Tricode News");
-			tasks.add(new BootstrapSingleResource("Tricode news optional Tags", "Bootstrap the optional tab for Tags", "/mgnl-bootstrap/optional/tricode-tags/config.modules.magnolia-news-module.apps.tricode-news.subApps.detail.editor.form.tabs.tagstab.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
-		}
+        return startupTasks;
+    }
 
-		/** Remove in future if we are changing to Magnolia category module*/
-		if (ctx.getHierarchyManager("config").isExist("/modules/tricode-categories")) {
-			LOG.info("Bootstrapping optional Tricode Categories for Tricode News");
-			tasks.add(new BootstrapSingleResource("Tricode news optional Categories", "Bootstrap the optional tab for Categories", "/mgnl-bootstrap/optional/tricode-categories/config.modules.magnolia-news-module.apps.tricode-news.subApps.detail.editor.form.tabs.categoriestab.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
-		}
-		return tasks;
-	}
-
-	@Override
-	protected List<Task> getDefaultUpdateTasks(Version forVersion) {
-		final List<Task> tasks = new ArrayList<>();
-		tasks.addAll(super.getDefaultUpdateTasks(forVersion));
-
-		// Always update templates, resources no matter what version is updated!
-		tasks.add(new UpdateModuleBootstrapTask(MODULE_NAME, "dialogs"));
-
-		return tasks;
-	}
-
-	@Override
-	protected List<Task> getExtraInstallTasks(InstallContext ctx) {
-		final List<Task> tasks = new ArrayList<>();
-		tasks.addAll(super.getExtraInstallTasks(ctx));
-
-		//Get Optional samples for bootstrapping.
-		tasks.add(new ModuleDependencyBootstrapTask("/mgnl-bootstrap-samples/optional", "tricode-tags"));
-		tasks.add(new ModuleDependencyBootstrapTask("/mgnl-bootstrap-samples/optional", "tricode-categories"));
-
-		return tasks;
-	}
 }

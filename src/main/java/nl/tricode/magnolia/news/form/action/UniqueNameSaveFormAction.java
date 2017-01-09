@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode Blog module
  *      Is a Blog module for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -36,7 +36,7 @@ import javax.jcr.RepositoryException;
  */
 public class UniqueNameSaveFormAction extends SaveFormAction {
 
-	private static final Logger log = LoggerFactory.getLogger(UniqueNameSaveFormAction.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(UniqueNameSaveFormAction.class);
 	
     public UniqueNameSaveFormAction(UniqueNameSaveFormActionDefinition definition, JcrNodeAdapter item,
                                     EditorCallback callback, EditorValidator validator) {
@@ -49,7 +49,7 @@ public class UniqueNameSaveFormAction extends SaveFormAction {
     }
 
     @Override
-    protected void setNodeName(Node node, JcrNodeAdapter item) throws RepositoryException {
+    protected void setNodeName(final Node node, final JcrNodeAdapter item) throws RepositoryException {
         try {
 			if (item.isNew() || NewsWorkspaceUtil.hasNameChanged(node, getDefinition().getPropertyName())) {
 			    final String newNodeName = NewsWorkspaceUtil.generateUniqueNodeName(node, getDefinition().getPropertyName());
@@ -57,7 +57,7 @@ public class UniqueNameSaveFormAction extends SaveFormAction {
 			    NodeUtil.renameNode(node, newNodeName);
 			}
 		} catch (PathNotFoundException e) {
-			log.error("Trying to fetch value of a non-existant propertyName", e);
+			LOGGER.error("Trying to fetch value of a non-existant propertyName", e);
 		}
     }
 }

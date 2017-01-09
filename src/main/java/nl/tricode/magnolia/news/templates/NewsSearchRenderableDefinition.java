@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News app for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -38,7 +38,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import javax.jcr.LoginException;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
@@ -50,14 +49,15 @@ import java.util.Set;
 
 @SuppressWarnings("unused") //Used in freemarker components.
 public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> extends RenderingModelImpl<RD> {
-	private static final Logger log = LoggerFactory.getLogger(NewsSearchRenderableDefinition.class);
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(NewsSearchRenderableDefinition.class);
 
 	private static final String SEARCH_TERM = "s";
 	private static final String PAGENUMBER = "p";
 	private static final String SEARCH_PROXIMITY = "~0.6";
 	private static final String NEWS_NODETYPE = "mgnl:news";
 
-	protected Multimap<String, String> filter;
+	private Multimap<String, String> filter;
 
 	private String nodetype;
 	private String workspace;
@@ -89,14 +89,14 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 			}
 			webContext.remove(parameterKey);
 		}
-		log.debug("Running constructor NewsSearchRenderableDefinition");
+		LOGGER.debug("Running constructor NewsSearchRenderableDefinition");
 	}
 
 	@Override
 	public String execute() {
 		String filters = getPredicate();
 		String queryString = JcrUtils.buildQuery(getSearchPath(), NEWS_NODETYPE, true, filters, true);
-		log.debug(MessageFormat.format("NewsSearchRenderableDefinition Query executed: {0}", queryString));
+		LOGGER.debug("NewsSearchRenderableDefinition Query executed: {}", queryString);
 
 		// Do not cache this response!
 		// More info: http://documentation.magnolia-cms.com/display/DOCS/Cache+module#Cachemodule-Cacheheadernegotiation
@@ -105,11 +105,13 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 		if (StringUtils.isBlank(queryString)) {
 			return null;
 		}
+
 		try {
 			executePagedNodesQuery(queryString, getMaxResultsPerPage(), getPageNumber(), getWorkspace(), getNodetype());
 		} catch (Exception e) {
-			log.error(MessageFormat.format("{0} caught while parsing query for search term [{1}] : {2}", e.getClass().getName(), queryString, e.getMessage()), e);
+			LOGGER.error("{} caught while parsing query for search term [{}] : {}", e.getClass().getName(), queryString, e.getMessage());
 		}
+
 		return StringUtils.EMPTY;
 	}
 
@@ -176,7 +178,7 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 				searchPath = templatingFunctions.nodeById(content.getProperty("searchPath").getString()).getPath();
 			}
 		} catch (Exception e) {
-			log.info("no searchPath property set on content", e);
+			LOGGER.info("no searchPath property set on content", e);
 		}
 		return searchPath;
 	}
@@ -206,7 +208,7 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 				maxResultsPerPage = Integer.parseInt(content.getProperty("maxResultsPerPage").getString());
 			}
 		} catch (Exception e) {
-			log.info("no maxResultsPerPage property set on content", e);
+			LOGGER.info("no maxResultsPerPage property set on content", e);
 		}
 		return maxResultsPerPage;
 	}
@@ -228,7 +230,7 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 	}
 
 	public List<ContentMap> getSearchResults() {
-		log.debug("get Search Results  size[" + searchResults.size() + "]");
+		LOGGER.debug("get Search Results  size[{}]", searchResults.size());
 		return searchResults;
 	}
 

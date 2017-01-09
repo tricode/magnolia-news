@@ -1,39 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sv:node sv:name="deactivateExpiredNews" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>mgnl:contentNode</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>b6e79022-8ce6-4c28-9f98-e24fd4285c29</sv:value>
-  </sv:property>
-  <sv:property sv:name="class" sv:type="String">
-    <sv:value>nl.tricode.magnolia.news.command.DeactivateExpiredNewsCommand</sv:value>
-  </sv:property>
-  <sv:property sv:name="commandName" sv:type="String">
-    <sv:value>deactivateExpiredNews</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:createdBy" sv:type="String">
-    <sv:value>admin</sv:value>
-  </sv:property>
-  <sv:property sv:name="mgnl:activationStatus" sv:type="Boolean">
-    <sv:value>false</sv:value>
-  </sv:property>
-  <sv:property sv:name="mgnl:created" sv:type="Date">
-    <sv:value>2015-07-06T11:44:21.157+02:00</sv:value>
-  </sv:property>
-  <sv:property sv:name="mgnl:createdBy" sv:type="String">
-    <sv:value>superuser</sv:value>
-  </sv:property>
-  <sv:property sv:name="mgnl:lastActivated" sv:type="Date">
-    <sv:value>2015-07-06T11:44:21.161+02:00</sv:value>
-  </sv:property>
-  <sv:property sv:name="mgnl:lastActivatedBy" sv:type="String">
-    <sv:value>superuser</sv:value>
-  </sv:property>
-  <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-    <sv:value>2015-07-06T11:45:05.980+02:00</sv:value>
-  </sv:property>
-  <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
-    <sv:value>superuser</sv:value>
-  </sv:property>
+<sv:node sv:name="deactivateExpiredNews" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mgnl:contentNode</sv:value>
+    </sv:property>
+    <sv:property sv:name="class" sv:type="String">
+        <sv:value>nl.tricode.magnolia.news.command.DeactivateExpiredNewsCommand</sv:value>
+    </sv:property>
+    <sv:property sv:name="commandName" sv:type="String">
+        <sv:value>deactivateExpiredNews</sv:value>
+    </sv:property>
 </sv:node>

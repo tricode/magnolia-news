@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News app for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -30,14 +30,15 @@ import javax.jcr.ImportUUIDBehavior;
  * any resource under path given.
  */
 public class ModuleDependencyBootstrapTask extends IsModuleInstalledOrRegistered {
-	public ModuleDependencyBootstrapTask(final String bootstrapResourcePath, final String dependencyName) {
-		super("Bootstrap " + dependencyName, "Bootstraps " + dependencyName + " content if installed.", dependencyName,
-				  new BootstrapResourcesTask(StringUtils.EMPTY, StringUtils.EMPTY, ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING) {
-					  @Override
-					  protected boolean acceptResource(InstallContext ctx, String name) {
-						  final String path = StringUtils.removeEnd(bootstrapResourcePath, "/") + "/" + dependencyName + "/";
-						  return name.startsWith(path) && name.endsWith(".xml");
-					  }
-				  });
-	}
+
+    public ModuleDependencyBootstrapTask(final String bootstrapResourcePath, final String dependencyName) {
+        super("Bootstrap " + dependencyName, "Bootstraps " + dependencyName + " content if installed.", dependencyName,
+                new BootstrapResourcesTask(StringUtils.EMPTY, StringUtils.EMPTY, ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING) {
+                    @Override
+                    protected boolean acceptResource(InstallContext ctx, String name) {
+                        final String path = StringUtils.removeEnd(bootstrapResourcePath, "/") + "/" + dependencyName + "/";
+                        return name.startsWith(path) && name.endsWith(".xml");
+                    }
+                });
+    }
 }

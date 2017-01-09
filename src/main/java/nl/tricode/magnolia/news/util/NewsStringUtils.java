@@ -1,4 +1,4 @@
-/**
+/*
  *      Tricode News module
  *      Is a News module for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
@@ -19,10 +19,12 @@
 package nl.tricode.magnolia.news.util;
 
 /**
- * This class extends org.apache.commons.lang.StringUtils additional it has some extra constants.
+ * News module string utils..
  */
-public class StringUtils extends org.apache.commons.lang.StringUtils {
-	public static final String DOT = "";
-	public static final String SPACE = " ";
-	public static final String HYPHEN = "-";
+public class NewsStringUtils {
+
+    public static final String HYPHEN = "-";
+
+    private NewsStringUtils() {
+    }
 }
