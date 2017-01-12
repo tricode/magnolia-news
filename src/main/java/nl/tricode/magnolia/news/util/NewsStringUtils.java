@@ -26,5 +26,6 @@ public class NewsStringUtils {
     public static final String HYPHEN = "-";
 
     private NewsStringUtils() {
+        // Util class, prevent instantiating
     }
 }

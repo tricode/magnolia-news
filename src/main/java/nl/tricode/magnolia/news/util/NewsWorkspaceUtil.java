@@ -26,9 +26,6 @@ import javax.jcr.RepositoryException;
 
 public class NewsWorkspaceUtil {
 
-    public static final String COLLABORATION = "collaboration";
-    public static final String CATEGORIES = "categories";
-
     private NewsWorkspaceUtil() {
         // Util class, prevent instantiating
     }

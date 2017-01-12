@@ -297,7 +297,7 @@ subApps:
         - name: cancel
       form:
         tabs:
-          - name: news
+          - name: tabNews
             fields:
               - name: title
                 required: true
@@ -307,7 +307,7 @@ subApps:
                 required: true
                 class: info.magnolia.ui.form.field.definition.TextFieldDefinition
               - name: text
-                configJsFile: /.resources/magnolia-news-module/ckeditor/config-richtext.js
+                configJsFile: /.resources/magnolia-news-module/webresources/js/ckeditor/config-richtext.js
                 class: info.magnolia.ui.form.field.definition.RichTextFieldDefinition
               - name: externalSource
                 class: info.magnolia.ui.form.field.definition.TextFieldDefinition
@@ -323,6 +323,21 @@ subApps:
                 binaryNodeName: image
                 allowedMimeTypePattern: image.*
                 class: info.magnolia.dam.app.ui.field.definition.DamUploadFieldDefinition
+          - name: tabCategories
+            fields:
+              - name: categories
+                label: tricode-blogs.tabCategories.categories.label
+                class: info.magnolia.ui.form.field.definition.MultiValueFieldDefinition
+                buttonSelectAddLabel: tricode-news.tabCategories.categories.add.label
+                field:
+                  name: linkField
+                  class: info.magnolia.ui.form.field.definition.LinkFieldDefinition
+                  targetWorkspace: category
+                  appName: categories
+                  fieldEditable: false
+                  buttonSelectNewLabel: tricode-news.tabCategories.categories.linkField.select.label
+                  identifierToPathConverter:
+                    class: info.magnolia.ui.form.field.converter.BaseIdentifierToPathConverter
     actions:
       commit:
         propertyName: title

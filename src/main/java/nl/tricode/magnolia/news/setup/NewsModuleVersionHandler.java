@@ -25,9 +25,6 @@ import info.magnolia.module.delta.DeltaBuilder;
 import info.magnolia.module.delta.ModuleBootstrapTask;
 import info.magnolia.module.delta.RemoveNodeTask;
 import info.magnolia.module.delta.Task;
-import nl.tricode.magnolia.news.setup.task.ModuleDependencyBootstrapTask;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.jcr.ImportUUIDBehavior;
 import java.util.ArrayList;
@@ -38,7 +35,6 @@ import java.util.List;
  */
 public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(NewsModuleVersionHandler.class);
     private static final String MODULE_NAME = "magnolia-news-module";
 
     /**
@@ -67,19 +63,6 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
     protected List<Task> getExtraInstallTasks(final InstallContext installContext) {
         final List<Task> tasks = new ArrayList<>();
         tasks.addAll(super.getExtraInstallTasks(installContext));
-        tasks.add(new ModuleDependencyBootstrapTask("/mgnl-bootstrap-samples/optional", "tricode-tags"));
-        tasks.add(new ModuleDependencyBootstrapTask("/mgnl-bootstrap-samples/optional", "tricode-categories"));
-
-        if (installContext.getHierarchyManager("config").isExist("/modules/tricode-tags")) {
-            LOGGER.info("Bootstrapping optional Tricode Tags for Tricode News");
-            tasks.add(new BootstrapSingleResource("Tricode news optional Tags", "Bootstrap the optional tab for Tags", "/mgnl-bootstrap/optional/tricode-tags/config.modules.magnolia-news-module.apps.tricode-news.subApps.detail.editor.form.tabs.tagstab.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
-        }
-
-        // todo FUNCTIONAL: Remove in future if we are changing to Magnolia category module
-        if (installContext.getHierarchyManager("config").isExist("/modules/tricode-categories")) {
-            LOGGER.info("Bootstrapping optional Tricode Categories for Tricode News");
-            tasks.add(new BootstrapSingleResource("Tricode news optional Categories", "Bootstrap the optional tab for Categories", "/mgnl-bootstrap/optional/tricode-categories/config.modules.magnolia-news-module.apps.tricode-news.subApps.detail.editor.form.tabs.categoriestab.xml", ImportUUIDBehavior.IMPORT_UUID_COLLISION_REPLACE_EXISTING));
-        }
 
         return tasks;
     }

@@ -1,0 +1,5 @@
+title: News item
+description: News item detail
+renderType: freemarker
+templateScript: /magnolia-news-module/templates/components/newsItemDetail.ftl
+modelClass: nl.tricode.magnolia.news.templates.NewsRenderableDefinition

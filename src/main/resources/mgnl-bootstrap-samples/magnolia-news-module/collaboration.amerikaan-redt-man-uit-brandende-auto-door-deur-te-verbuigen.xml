@@ -3,29 +3,14 @@
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>mgnl:news</sv:value>
   </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>3f913fa2-e07d-4848-8168-4ef3387c852b</sv:value>
-  </sv:property>
   <sv:property sv:name="categories" sv:type="String" sv:multiple="true">
-    <sv:value>1782eb5f-d68e-4610-b232-d4b647908988</sv:value>
+    <sv:value>7f042eb5-150a-4dc9-b1cc-c2b0b76d785a</sv:value>
   </sv:property>
   <sv:property sv:name="comments" sv:type="Boolean">
     <sv:value>false</sv:value>
   </sv:property>
-  <sv:property sv:name="jcr:createdBy" sv:type="String">
-    <sv:value>admin</sv:value>
-  </sv:property>
   <sv:property sv:name="mgnl:created" sv:type="Date">
     <sv:value>2014-07-02T15:33:03.922+02:00</sv:value>
-  </sv:property>
-  <sv:property sv:name="mgnl:createdBy" sv:type="String">
-    <sv:value>superuser</sv:value>
-  </sv:property>
-  <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-    <sv:value>2014-07-31T11:55:10.635+02:00</sv:value>
-  </sv:property>
-  <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
-    <sv:value>superuser</sv:value>
   </sv:property>
   <sv:property sv:name="startDate" sv:type="Date">
     <sv:value>2014-07-04T00:00:00.000+02:00</sv:value>

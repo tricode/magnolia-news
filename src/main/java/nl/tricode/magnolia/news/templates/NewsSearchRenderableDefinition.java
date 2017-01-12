@@ -32,6 +32,7 @@ import info.magnolia.rendering.template.RenderableDefinition;
 import info.magnolia.templating.functions.TemplatingFunctions;
 import nl.tricode.magnolia.news.NewsNodeTypes;
 import nl.tricode.magnolia.news.util.JcrUtils;
+import nl.tricode.magnolia.news.util.NewsRepositoryConstants;
 import nl.tricode.magnolia.news.util.NewsWorkspaceUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -73,7 +74,7 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 	public NewsSearchRenderableDefinition(Node content, RD definition, RenderingModel<?> parent, TemplatingFunctions templatingFunctions) {
 		super(content, definition, parent);
 		this.templatingFunctions = templatingFunctions;
-		setWorkspace(NewsWorkspaceUtil.COLLABORATION);
+		setWorkspace(NewsRepositoryConstants.COLLABORATION);
 		setNodetype(NewsNodeTypes.News.NAME);
 
 		filter = LinkedListMultimap.create();

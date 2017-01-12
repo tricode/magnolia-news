@@ -1,0 +1,6 @@
+title: News items
+description: Shows a list of news items
+renderType: freemarker
+templateScript: /magnolia-news-module/templates/components/newsItems.ftl
+dialog: magnolia-news-module:components/newsItems
+modelClass: nl.tricode.magnolia.news.templates.NewsRenderableDefinition

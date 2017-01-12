@@ -8,5 +8,6 @@ import info.magnolia.repository.RepositoryConstants;
 public interface NewsRepositoryConstants extends RepositoryConstants {
 
     String COLLABORATION = "collaboration";
+    String CATEGORY = "category";
 
 }
