@@ -45,25 +45,12 @@ public final class JcrUtils {
      * @param query         Query string
      * @param maxResultSize Max results returned
      * @param pageNumber    paging number
-     * @return List<Node> List of blog nodes
+     * @return List<Node> List of news item nodes
      * @throws javax.jcr.RepositoryException
      */
     public static List<Node> getWrappedNodesFromQuery(String query, int maxResultSize, int pageNumber, String nodeTypeName) throws RepositoryException {
-        return getWrappedNodesFromQuery(query, maxResultSize, pageNumber, nodeTypeName, NewsRepositoryConstants.COLLABORATION);
-    }
-
-    /**
-     * Query items using JCR SQL2 syntax.
-     *
-     * @param query         Query string
-     * @param maxResultSize Max results returned
-     * @param pageNumber    paging number
-     * @return List<Node> List of nodes
-     * @throws javax.jcr.RepositoryException
-     */
-    public static List<Node> getWrappedNodesFromQuery(String query, int maxResultSize, int pageNumber, String nodeTypeName, String workspace) throws RepositoryException {
         final List<Node> itemsListPaged = new ArrayList<>(0);
-        final NodeIterator items = QueryUtil.search(workspace, query, Query.JCR_SQL2, nodeTypeName);
+        final NodeIterator items = QueryUtil.search(NewsRepositoryConstants.COLLABORATION, query, Query.JCR_SQL2, nodeTypeName);
 
         // Paging result set
         final int startRow = (maxResultSize * (pageNumber - 1));
@@ -71,7 +58,7 @@ public final class JcrUtils {
             try {
                 items.skip(startRow);
             } catch (NoSuchElementException e) {
-                LOGGER.error("No more blog items found beyond this item number: {}", startRow);
+                LOGGER.error("No more news items found beyond this item number: {}", startRow);
             }
         }
 

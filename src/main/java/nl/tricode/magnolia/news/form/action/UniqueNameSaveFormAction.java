@@ -1,6 +1,6 @@
 /*
- *      Tricode Blog module
- *      Is a Blog module for Magnolia CMS.
+ *      Tricode News module
+ *      Is a News module for Magnolia CMS.
  *      Copyright (C) 2015  Tricode Business Integrators B.V.
  *
  * 	  This program is free software: you can redistribute it and/or modify

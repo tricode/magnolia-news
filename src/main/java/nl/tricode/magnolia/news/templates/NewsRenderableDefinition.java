@@ -222,8 +222,8 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
         if (StringUtils.isNumeric(maxResultSize)) {
             resultSize = Integer.parseInt(maxResultSize);
         }
-        final String sqlBlogItems = JcrUtils.buildQuery(path, nodeType);
-        return templatingFunctions.asContentMapList(JcrUtils.getWrappedNodesFromQuery(sqlBlogItems, resultSize, pageNumber, nodeTypeName));
+        final String query = JcrUtils.buildQuery(path, nodeType);
+        return templatingFunctions.asContentMapList(JcrUtils.getWrappedNodesFromQuery(query, resultSize, pageNumber, nodeTypeName));
     }
 
     private int getPageNumber() {

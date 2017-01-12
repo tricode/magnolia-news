@@ -326,7 +326,7 @@ subApps:
           - name: tabCategories
             fields:
               - name: categories
-                label: tricode-blogs.tabCategories.categories.label
+                label: tricode-news.tabCategories.categories.label
                 class: info.magnolia.ui.form.field.definition.MultiValueFieldDefinition
                 buttonSelectAddLabel: tricode-news.tabCategories.categories.add.label
                 field:

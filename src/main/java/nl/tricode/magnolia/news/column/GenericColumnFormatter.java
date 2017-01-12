@@ -59,7 +59,7 @@ final class GenericColumnFormatter {
                     }
                 }
             } catch (RepositoryException e) {
-                LOGGER.info("Unable to get " + propertyTitle + " of blog for column", e);
+                LOGGER.info("Unable to get '" + propertyTitle + "' of news for column", e);
             }
         }
         return StringUtils.EMPTY;
