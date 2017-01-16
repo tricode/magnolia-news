@@ -139,11 +139,11 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
      * @return Boolean true when older news exists
      */
     @SuppressWarnings("unused") //Used in freemarker components.
-    public boolean hasOlderNews(String path, int maxResultSize) throws RepositoryException {
+    public boolean hasOlderPosts(String path, int maxResultSize) throws RepositoryException {
         final long totalNews = getNewsCount(path);
         final int pageNumber = getPageNumber();
 
-        return hasOlderNews(path, maxResultSize, totalNews, pageNumber);
+        return hasOlderNews(maxResultSize, totalNews, pageNumber);
     }
 
     /**
@@ -155,7 +155,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
      */
     @SuppressWarnings("unused") //Used in freemarker components.
     public int pageOlderPosts(String path, int maxResultSize) throws RepositoryException {
-        if (hasOlderNews(path, maxResultSize)) {
+        if (hasOlderPosts(path, maxResultSize)) {
             return getPageNumber() + 1;
         } else {
             return getPageNumber();
@@ -212,7 +212,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
         return StringUtils.EMPTY;
     }
 
-    private boolean hasOlderNews(String path, int maxResultSize, long totalNewsItems, int pageNumber) throws RepositoryException {
+    private boolean hasOlderNews(int maxResultSize, long totalNewsItems, int pageNumber) throws RepositoryException {
         final int maxPage = (int) Math.ceil((double) totalNewsItems / (double) maxResultSize);
         return maxPage >= pageNumber + 1;
     }
