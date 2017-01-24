@@ -46,7 +46,6 @@ public class NewsNodeTypes {
         public static final String PROPERTY_COMMENTS_ENABLED = "comments";
         public static final String PROPERTY_EXTERNAL_SOURCE = "externalSource";
         public static final String PROPERTY_CATEGORIES = "categories";
-        public static final String PROPERTY_TAGS = "tags";
 
         private News() {
             // Prevent instantiating this class
