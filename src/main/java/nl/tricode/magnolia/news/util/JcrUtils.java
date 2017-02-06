@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public final class JcrUtils {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(JcrUtils.class);
 
     private JcrUtils() {
@@ -45,8 +44,9 @@ public final class JcrUtils {
      * @param query         Query string
      * @param maxResultSize Max results returned
      * @param pageNumber    paging number
-     * @return List<Node> List of news item nodes
-     * @throws javax.jcr.RepositoryException
+     * @param nodeTypeName  Node type
+     * @return List List of news item nodes
+     * @throws javax.jcr.RepositoryException Repository Exceotopn
      */
     public static List<Node> getWrappedNodesFromQuery(String query, int maxResultSize, int pageNumber, String nodeTypeName) throws RepositoryException {
         final List<Node> itemsListPaged = new ArrayList<>(0);
@@ -67,7 +67,6 @@ public final class JcrUtils {
             itemsListPaged.add(new I18nNodeWrapper(items.nextNode()));
             count++;
         }
-
         return itemsListPaged;
     }
 
@@ -107,5 +106,4 @@ public final class JcrUtils {
         LOGGER.debug("BuildQuery [{}].", query.toString());
         return query.toString();
     }
-
 }

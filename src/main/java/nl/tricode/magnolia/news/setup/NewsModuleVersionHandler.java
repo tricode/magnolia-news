@@ -34,12 +34,10 @@ import java.util.List;
  * This class is used to handle installation and updates of your module.
  */
 public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
-
     private static final String MODULE_NAME = "magnolia-news-module";
 
     /**
      * Constructor.
-     * <p/>
      * Here you can register deltas for tasks that need to be run when UPDATING an EXISTING module.
      */
     public NewsModuleVersionHandler() {
@@ -77,8 +75,6 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
             startupTasks.add(new RemoveNodeTask("Remove snapshot information", "", "config", "/modules/" + MODULE_NAME + "/commands"));
             startupTasks.add(new ModuleBootstrapTask());
         }
-
         return startupTasks;
     }
-
 }

@@ -50,7 +50,6 @@ import java.util.Set;
 
 @SuppressWarnings("unused") //Used in freemarker components.
 public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> extends RenderingModelImpl<RD> {
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(NewsSearchRenderableDefinition.class);
 
 	private static final String SEARCH_TERM = "s";
@@ -112,7 +111,6 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 		} catch (Exception e) {
 			LOGGER.error("{} caught while parsing query for search term [{}] : {}", e.getClass().getName(), queryString, e.getMessage());
 		}
-
 		return StringUtils.EMPTY;
 	}
 
@@ -122,7 +120,9 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 	 * @param statement     SQL2 statement
 	 * @param maxResultSize Max results returned
 	 * @param pageNumber    paging number
-	 * @throws javax.jcr.RepositoryException
+     * @param workspace     Repository workspace
+     * @param nodeType      Node type
+	 * @throws javax.jcr.RepositoryException Repostory exception.
 	 */
 	protected void executePagedNodesQuery(String statement, int maxResultSize, int pageNumber, String workspace, String nodeType) throws RepositoryException {
 		List<Node> nodeList = new ArrayList<>(0);

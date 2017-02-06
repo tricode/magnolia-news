@@ -92,7 +92,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
      * @param path          Start node path in hierarchy
      * @param maxResultSize Number of items to return. When empty <code>Integer.MAX_VALUE</code> will be used.
      * @return List of news nodes sorted by date created in descending order
-     * @throws RepositoryException
+     * @throws RepositoryException Repository exception
      */
     @SuppressWarnings("unused") //Used in freemarker components.
     public List<ContentMap> getNews(String path, String maxResultSize) throws RepositoryException {
@@ -111,7 +111,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
      * @param path          Start node path in hierarchy
      * @param maxResultSize Number of items to return. When empty <code>5</code> will be used.
      * @return List of news nodes sorted by date created in descending order
-     * @throws RepositoryException
+     * @throws RepositoryException Repository exception
      */
     @SuppressWarnings("unused") //Used in freemarker components.
     public List<ContentMap> getLatestNews(String path, String maxResultSize) throws RepositoryException {
@@ -124,6 +124,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
      *
      * @param path Start node path in hierarchy
      * @return long Number of news
+     * @throws RepositoryException Repository exception
      */
     @SuppressWarnings("unused") //Used in freemarker components.
     public int getNewsCount(String path) throws RepositoryException {
@@ -134,9 +135,10 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
     /**
      * Determine if older news posts exists
      *
-     * @param path
-     * @param maxResultSize
+     * @param path Node path
+     * @param maxResultSize Maximum result size
      * @return Boolean true when older news exists
+     * @throws RepositoryException Repository exception
      */
     @SuppressWarnings("unused") //Used in freemarker components.
     public boolean hasOlderPosts(String path, int maxResultSize) throws RepositoryException {
@@ -149,9 +151,10 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
     /**
      * Determine the next following page number containing older news
      *
-     * @param path
-     * @param maxResultSize
+     * @param path Node path
+     * @param maxResultSize Maximum result size
      * @return page number with older news
+     * @throws RepositoryException Repository exception
      */
     @SuppressWarnings("unused") //Used in freemarker components.
     public int pageOlderPosts(String path, int maxResultSize) throws RepositoryException {
@@ -189,7 +192,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
     /**
      * Get categories for given news node
      *
-     * @param news
+     * @param news ContentMap news
      * @return List of category nodes
      */
     @SuppressWarnings("unused") //Used in freemarker components.

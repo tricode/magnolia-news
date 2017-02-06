@@ -31,6 +31,10 @@ public class NewsWorkspaceUtil {
     }
 
     /**
+     * @param node Node
+     * @param propertyName Name of property.
+     * @throws javax.jcr.RepositoryException Repository Exception.
+     * @return nodeName
      * Create a new Node Unique NodeName.
      */
     public static String generateUniqueNodeName(final Node node, String propertyName) throws RepositoryException {
