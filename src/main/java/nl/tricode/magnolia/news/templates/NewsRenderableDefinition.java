@@ -238,10 +238,13 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
         final List<ContentMap> items = new ArrayList<ContentMap>(0);
 
         try {
-            final Value[] values = item.getProperty(nodeType).getValues();
-            if (values != null) {
-                for (Value value : values) {
-                    items.add(templatingFunctions.contentById(value.getString(), workspace));
+            if (item != null) {
+
+                final Value[] values = item.getProperty(nodeType).getValues();
+                if (values != null) {
+                    for (Value value : values) {
+                        items.add(templatingFunctions.contentById(value.getString(), workspace));
+                    }
                 }
             }
         } catch (RepositoryException e) {
