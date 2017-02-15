@@ -18,22 +18,22 @@
  */
 package nl.tricode.magnolia.news.setup;
 
+import com.google.common.collect.Lists;
 import info.magnolia.module.DefaultModuleVersionHandler;
 import info.magnolia.module.InstallContext;
 import info.magnolia.module.delta.BootstrapSingleResource;
 import info.magnolia.module.delta.DeltaBuilder;
-import info.magnolia.module.delta.ModuleBootstrapTask;
 import info.magnolia.module.delta.RemoveNodeTask;
 import info.magnolia.module.delta.Task;
 
 import javax.jcr.ImportUUIDBehavior;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * This class is used to handle installation and updates of your module.
  */
 public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
+
     private static final String MODULE_NAME = "magnolia-news-module";
 
     /**
@@ -49,6 +49,10 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
                 .addTask(new RemoveNodeTask("Remove old nodes", "/modules/" + MODULE_NAME + "/apps"))
                 .addTask(new RemoveNodeTask("Remove old nodes", "/modules/" + MODULE_NAME + "/dialogs"))
         );
+
+        register(DeltaBuilder.update("1.1.6", "Un-nesting news items")
+                .addTask(new FindAndMoveNestedNewsTask())
+        );
     }
 
     /**
@@ -59,22 +63,9 @@ public class NewsModuleVersionHandler extends DefaultModuleVersionHandler {
      */
     @Override
     protected List<Task> getExtraInstallTasks(final InstallContext installContext) {
-        final List<Task> tasks = new ArrayList<>();
-        tasks.addAll(super.getExtraInstallTasks(installContext));
+        final List<Task> tasks = Lists.newArrayList(super.getExtraInstallTasks(installContext));
 
         return tasks;
     }
 
-    @Override
-    protected List<Task> getStartupTasks(InstallContext ctx) {
-        final List<Task> startupTasks = new ArrayList<>(0);
-        startupTasks.addAll(super.getStartupTasks(ctx));
-
-        if ("SNAPSHOT".equals(ctx.getCurrentModuleDefinition().getVersion().getClassifier())) {
-            // force updates for snapshots
-            startupTasks.add(new RemoveNodeTask("Remove snapshot information", "", "config", "/modules/" + MODULE_NAME + "/commands"));
-            startupTasks.add(new ModuleBootstrapTask());
-        }
-        return startupTasks;
-    }
 }

@@ -39,3 +39,9 @@ Copyright (c) 2015 Tricode and contributors. Released under a [GNUv3 license](ht
 ##Release notes 1.1.4
 * Upgrade to Magnolia 5.5
 * Update to Java 8
+
+##Release notes 1.1.5
+* Fixed incorrect JavaDoc that caused the release to fail
+
+##Release notes 1.1.6
+* Prevent nesting of news items within news items (+ un-nest any incorrect encountered)
