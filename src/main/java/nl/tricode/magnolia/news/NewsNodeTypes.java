@@ -34,9 +34,6 @@ public class NewsNodeTypes {
         // Node Type Name
         public static final String NAME = NodeTypes.MGNL_PREFIX + "news";
 
-        // Node Type Folder Name
-        public static final String FOLDER = NodeTypes.MGNL_PREFIX + "newsFolder";
-
         // Property Name
         public static final String PROPERTY_TITLE = "title";
         public static final String PROPERTY_SUMMARY = "summary";
@@ -48,6 +45,18 @@ public class NewsNodeTypes {
         public static final String PROPERTY_CATEGORIES = "categories";
 
         private News() {
+            // Prevent instantiating this class
+        }
+    }
+
+    /**
+     * Represents the nodeType mgnl:newsFolder.
+     */
+    public static class Folder {
+        // Node Type Name
+        public static final String NAME = NodeTypes.MGNL_PREFIX + "newsFolder";
+
+        private Folder() {
             // Prevent instantiating this class
         }
     }

@@ -31,9 +31,8 @@ import info.magnolia.rendering.model.RenderingModelImpl;
 import info.magnolia.rendering.template.RenderableDefinition;
 import info.magnolia.templating.functions.TemplatingFunctions;
 import nl.tricode.magnolia.news.NewsNodeTypes;
-import nl.tricode.magnolia.news.util.JcrUtils;
+import nl.tricode.magnolia.news.util.NewsJcrUtils;
 import nl.tricode.magnolia.news.util.NewsRepositoryConstants;
-import nl.tricode.magnolia.news.util.NewsWorkspaceUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,7 +94,7 @@ public class NewsSearchRenderableDefinition<RD extends RenderableDefinition> ext
 	@Override
 	public String execute() {
 		String filters = getPredicate();
-		String queryString = JcrUtils.buildQuery(getSearchPath(), NEWS_NODETYPE, true, filters, true);
+		String queryString = NewsJcrUtils.buildQuery(getSearchPath(), NEWS_NODETYPE, true, filters, true);
 		LOGGER.debug("NewsSearchRenderableDefinition Query executed: {}", queryString);
 
 		// Do not cache this response!

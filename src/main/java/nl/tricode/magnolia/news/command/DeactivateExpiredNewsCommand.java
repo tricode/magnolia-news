@@ -25,7 +25,7 @@ import info.magnolia.cms.util.Rule;
 import info.magnolia.commands.impl.BaseRepositoryCommand;
 import info.magnolia.context.Context;
 import nl.tricode.magnolia.news.NewsNodeTypes;
-import nl.tricode.magnolia.news.util.JcrUtils;
+import nl.tricode.magnolia.news.util.NewsJcrUtils;
 import nl.tricode.magnolia.news.util.NewsRepositoryConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +54,7 @@ public class DeactivateExpiredNewsCommand extends BaseRepositoryCommand {
     public boolean execute(final Context context) {
         try {
             // Get a list of all news nodes with expiryDate
-            final List<Node> expiredNodes = JcrUtils.getWrappedNodesFromQuery(buildQuery(NewsNodeTypes.News.NAME, DEACTIVATE_PROPERTY), NewsNodeTypes.News.NAME, NewsRepositoryConstants.COLLABORATION);
+            final List<Node> expiredNodes = NewsJcrUtils.getWrappedNodesFromQuery(buildQuery(NewsNodeTypes.News.NAME, DEACTIVATE_PROPERTY), NewsNodeTypes.News.NAME, NewsRepositoryConstants.COLLABORATION);
             LOGGER.debug("expiredNodes size [{}].", expiredNodes.size());
 
             // Unpublish expired nodes

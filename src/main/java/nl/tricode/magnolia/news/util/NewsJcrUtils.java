@@ -31,10 +31,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public final class JcrUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JcrUtils.class);
+public final class NewsJcrUtils {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NewsJcrUtils.class);
 
-    private JcrUtils() {
+    private NewsJcrUtils() {
         // Util class, prevent instantiating
     }
 

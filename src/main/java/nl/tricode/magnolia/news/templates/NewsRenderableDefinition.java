@@ -27,7 +27,7 @@ import info.magnolia.rendering.model.RenderingModelImpl;
 import info.magnolia.rendering.template.RenderableDefinition;
 import info.magnolia.templating.functions.TemplatingFunctions;
 import nl.tricode.magnolia.news.NewsNodeTypes;
-import nl.tricode.magnolia.news.util.JcrUtils;
+import nl.tricode.magnolia.news.util.NewsJcrUtils;
 import nl.tricode.magnolia.news.util.NewsRepositoryConstants;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.commons.lang.StringUtils;
@@ -101,8 +101,8 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
             resultSize = Integer.parseInt(maxResultSize);
         }
         String customFilters = getCategoryPredicate(filter);
-        final String sqlNewsItems = JcrUtils.buildQuery(path, NewsNodeTypes.News.NAME, true, customFilters);
-        return templatingFunctions.asContentMapList(JcrUtils.getWrappedNodesFromQuery(sqlNewsItems, resultSize, getPageNumber(), NewsNodeTypes.News.NAME));
+        final String sqlNewsItems = NewsJcrUtils.buildQuery(path, NewsNodeTypes.News.NAME, true, customFilters);
+        return templatingFunctions.asContentMapList(NewsJcrUtils.getWrappedNodesFromQuery(sqlNewsItems, resultSize, getPageNumber(), NewsNodeTypes.News.NAME));
     }
 
     /**
@@ -128,7 +128,7 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
      */
     @SuppressWarnings("unused") //Used in freemarker components.
     public int getNewsCount(String path) throws RepositoryException {
-        final String sqlNewsItems = JcrUtils.buildQuery(path, NewsNodeTypes.News.NAME);
+        final String sqlNewsItems = NewsJcrUtils.buildQuery(path, NewsNodeTypes.News.NAME);
         return IteratorUtils.toList(QueryUtil.search(NewsRepositoryConstants.COLLABORATION, sqlNewsItems, Query.JCR_SQL2, NewsNodeTypes.News.NAME)).size();
     }
 
@@ -225,8 +225,8 @@ public class NewsRenderableDefinition<RD extends RenderableDefinition> extends R
         if (StringUtils.isNumeric(maxResultSize)) {
             resultSize = Integer.parseInt(maxResultSize);
         }
-        final String query = JcrUtils.buildQuery(path, nodeType);
-        return templatingFunctions.asContentMapList(JcrUtils.getWrappedNodesFromQuery(query, resultSize, pageNumber, nodeTypeName));
+        final String query = NewsJcrUtils.buildQuery(path, nodeType);
+        return templatingFunctions.asContentMapList(NewsJcrUtils.getWrappedNodesFromQuery(query, resultSize, pageNumber, nodeTypeName));
     }
 
     private int getPageNumber() {
