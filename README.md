@@ -45,3 +45,6 @@ Copyright (c) 2015 Tricode and contributors. Released under a [GNUv3 license](ht
 
 ##Release notes 1.1.6
 * Prevent nesting of news items within news items (+ un-nest any incorrect encountered)
+
+##Release notes 1.1.7
+* Update to Magnolia 5.5.3 + Nexus URL update
