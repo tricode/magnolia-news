@@ -59,6 +59,7 @@ subApps:
               demo-publisher: demo-project-publisher
               cms-author: cms-author
               superuser: superuser
+              news-editor: news-editor
           rules:
             - name: IsNotDeletedRule
               implementationClass: info.magnolia.ui.framework.availability.IsNotDeletedRule
@@ -75,6 +76,7 @@ subApps:
               demo-publisher: demo-project-publisher
               cms-author: cms-author
               superuser: superuser
+              news-editor: news-editor
           rules:
             - name: IsNotDeletedRule
               implementationClass: info.magnolia.ui.framework.availability.IsNotDeletedRule
@@ -90,6 +92,7 @@ subApps:
               demo-publisher: demo-project-publisher
               cms-author: cms-author
               superuser: superuser
+              news-editor: news-editor
           rules:
             - name: IsDeletedRule
               implementationClass: info.magnolia.ui.framework.availability.IsDeletedRule
@@ -105,6 +108,7 @@ subApps:
               demo-publisher: demo-project-publisher
               cms-author: cms-author
               superuser: superuser
+              news-editor: news-editor
           rules:
             - name: IsNotDeletedRule
               implementationClass: info.magnolia.ui.framework.availability.IsNotDeletedRule
